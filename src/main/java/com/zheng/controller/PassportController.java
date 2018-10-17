@@ -1,8 +1,10 @@
 package com.zheng.controller;
 
+import com.zheng.service.ResourcesService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "passport")
 public class PassportController {
+
+    @Autowired
+    ResourcesService resourcesService;
 
     @RequestMapping(value = "/login")
     public String login() {
@@ -41,7 +46,7 @@ public class PassportController {
             // 在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
             // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
             // 所以这一步在调用login(token)方法时,它会走到xxRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
-            currentUser.login(token);
+             currentUser.login(token);
             return "index";
         } catch (Exception e) {
             token.clear();

@@ -23,7 +23,7 @@
         <input type="password" placeholder="请输入密码" autocomplete="off" id="password" name="password" class="layui-input" lay-verify="required">
     </div>
     <div class="layui-form-item input-item">
-        <label></label>
+        <font style="color: red">${msg!}</font>
     </div>
     <div class="layui-form-item">
         <button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>

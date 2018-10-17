@@ -52,13 +52,13 @@ public class RetryLimitCredentialsMatcher extends CredentialsMatcher {
             throw new ExcessiveAttemptsException("帐号[" + username + "]已被禁止登录！");
         }
 
-        // 计数大于5时，设置用户被锁定一小时
+        // 计数大于5时，设置用户被锁定10秒钟
         String loginCount = String.valueOf(opsForValue.get(loginCountKey));
         int retryCount = (5 - Integer.parseInt(loginCount));
         if (retryCount <= 0) {
             opsForValue.set(isLockKey, "LOCK");
-            redisTemplate.expire(isLockKey, 1, TimeUnit.HOURS);
-            redisTemplate.expire(loginCountKey, 1, TimeUnit.HOURS);
+            redisTemplate.expire(isLockKey, 10, TimeUnit.MILLISECONDS);
+            redisTemplate.expire(loginCountKey, 10, TimeUnit.MILLISECONDS);
             throw new ExcessiveAttemptsException("由于密码输入错误次数过多，帐号[" + username + "]已被禁止登录！");
         }
 

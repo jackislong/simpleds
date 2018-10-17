@@ -48,10 +48,10 @@ public class ShiroRealm extends AuthorizingRealm {
         // 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-        Long userId = (Long) SecurityUtils.getSubject().getPrincipal();
+        Integer userId =  (Integer) SecurityUtils.getSubject().getPrincipal();
 
         // 赋予角色
-        List<SysRoleEntity> roleList = roleService.listRolesByUserId(userId);
+        List<SysRoleEntity> roleList = roleService.listRolesByUserId(new Long(userId.toString()));
         for (SysRoleEntity role : roleList) {
             info.addRole(role.getName());
         }
@@ -66,7 +66,7 @@ public class ShiroRealm extends AuthorizingRealm {
         if (UserTypeEnum.ROOT.toString().equalsIgnoreCase(user.getUserType())) {
             resourcesList = resourcesService.listAll();
         } else {
-            resourcesList = resourcesService.listByUserId(userId);
+            resourcesList = resourcesService.listByUserId(new Long(userId.toString()));
         }
 
         if (!CollectionUtils.isEmpty(resourcesList)) {
