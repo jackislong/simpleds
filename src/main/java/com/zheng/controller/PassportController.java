@@ -30,6 +30,11 @@ public class PassportController {
         return  "login";
     }
 
+    @RequestMapping(value = "/dashboard")
+    public String dashboard(){
+
+        return "index";
+    }
     /**
      * 登录
      *
@@ -50,7 +55,7 @@ public class PassportController {
             return "index";
         } catch (Exception e) {
             token.clear();
-            modelMap.addAttribute("msg",e.getMessage());
+            modelMap.addAttribute("error",e.getMessage());
            return  "login";
 
         }

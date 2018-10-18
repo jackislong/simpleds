@@ -3,6 +3,7 @@ package com.zheng.shiro;
 import com.zheng.consts.SessionConst;
 import com.zheng.entity.SysUserEntity;
 import com.zheng.exception.SimpleException;
+import com.zheng.service.ResourcesService;
 import com.zheng.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -36,6 +37,10 @@ public class RetryLimitCredentialsMatcher extends CredentialsMatcher {
 
     @Autowired
     UserService userService;
+
+
+    @Autowired
+    ResourcesService resourcesService;
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
@@ -78,6 +83,10 @@ public class RetryLimitCredentialsMatcher extends CredentialsMatcher {
         // 当验证都通过后，把用户信息放在session里
         // 注：User必须实现序列化
         SecurityUtils.getSubject().getSession().setAttribute(SessionConst.USER_SESSION_KEY, user);
+        /**
+         * 菜单
+         */
+        SecurityUtils.getSubject().getSession().setAttribute(SessionConst.USER_RESOURCE_KEY, resourcesService.listByUserId(new Long(userId.toString())));
         return true;
     }
 }

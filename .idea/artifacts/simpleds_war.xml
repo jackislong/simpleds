@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="simpleds:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="simpleds-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="simpleds:war exploded" />
+    </root>
+  </artifact>
+</component>

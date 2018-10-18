@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan("com.zheng.mapper")
 @SpringBootApplication
-public class SimpledsApplication {
+public class SimpledsApplication   {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SimpledsApplication.class, args);
