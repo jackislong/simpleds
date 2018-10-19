@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>后台信息管理系统</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-datetimepicker.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap-datetimepicker.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/toastr/toastr.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/animate.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
@@ -14,289 +17,296 @@
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
     <div id="page-wrapper" class="gray-bg">
         <div class="border-bottom" th:include="header :: headerTop"></div>
-        <div class="wrapper wrapper-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Orders</h5>
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                    <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                    <button type="button" class="btn btn-xs btn-white">Annual</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                        <input type="hidden" id="data2" th:value="${1000}"/>
-                                        <input type="hidden" id="data3" th:value="${1000}"/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                            </div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
+            <div class="col-lg-10">
+                <h2>直销</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">首页</a>
+                    </li>
+                    <li>
+                        <a>直销</a>
+                    </li>
+                    <li class="active">
+                        <strong>开户</strong>
+                    </li>
+                </ol>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Orders</h5>
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                    <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                    <button type="button" class="btn btn-xs btn-white">Annual</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                        <input type="hidden" id="data2" th:value="${1000}"/>
-                                        <input type="hidden" id="data3" th:value="${1000}"/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                            </div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-2">
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Orders</h5>
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                    <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                    <button type="button" class="btn btn-xs btn-white">Annual</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                        <input type="hidden" id="data2" th:value="${1000}"/>
-                                        <input type="hidden" id="data3" th:value="${1000}"/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                            </div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Orders</h5>
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                    <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                    <button type="button" class="btn btn-xs btn-white">Annual</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                        <input type="hidden" id="data2" th:value="${1000}"/>
-                                        <input type="hidden" id="data3" th:value="${1000}"/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                            </div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Orders</h5>
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-white active">Today</button>
-                                    <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                                    <button type="button" class="btn btn-xs btn-white">Annual</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                                        <input type="hidden" id="data2" th:value="${1000}"/>
-                                        <input type="hidden" id="data3" th:value="${1000}"/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <ul class="stat-list">
-                                        <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
-                                            <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 48%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
-                                            <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                            </div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 60%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <h2 class="no-margins ">9,180</h2>
-                                            <small>Monthly income from orders</small>
-                                            <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                            <div class="progress progress-mini">
-                                                <div style="width: 22%;" class="progress-bar"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+         <div class="wrapper wrapper-content">
+            <form action="/account/openaccount" id="accountfrom" onsubmit="return checkdata();" method="post">
+              <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>录单信息</h5>
+                            </div>
+                            <div class="ibox-content" style="display: block;">
+                                <div class="row">
+                                        <div class="col-sm-3 m-b-xs">
+                                            <select name="trusttype" id="trusttype" class="form-control" >
+                                                <option value="">--请选择委托方式--</option>
+                                                <option value="0">柜台委托</option>
+                                                <option value="4">传真委托</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3 m-b-xs">
+                                            <input size="16" class="form-control" type="text" id="requesttime" name="requesttime"  placeholder="申请时间"  readonly="readonly"  value=""  />
+                                            <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                          <div class="ibox-title">
+                              <h5>用户信息</h5>
+                          </div>
+                          <div class="ibox-content" style="display: block;">
+                              <div class="row">
+
+                                  <div class="col-sm-3 m-b-xs">
+                                      <input id="custname" name="custname" class="form-control" type="text"  placeholder="客户姓名" />
+                                  </div>
+                                  <div class="col-sm-3 m-b-xs">
+                                      <select name="sex" id="sex" class="form-control" >
+                                          <option value="">--请选择客户性别--</option>
+                                          <option value="0">女</option>
+                                          <option value="1">男</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-3 m-b-xs">
+                                      <select name="cettype" id="cettype" class="form-control" >
+                                          <option value="0">--请选择证件类型--</option>
+                                          <option value="0" th:each="cert:${certtypelist}" th:value="${cert.getKeyvalue()}" th:text="${cert.getCaption()}">--证件类型--</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-3 m-b-xs">
+                                      <input id="certno" name="certno" class="form-control" type="text"  placeholder="证件号码" />
+                                  </div>
+                                  <div class="col-sm-3 m-b-xs">
+                                      <input id="certno_a" name="certno_a" class="form-control" type="text"  placeholder="再次输入" />
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-3 m-b-xs">
+                                      <input size="16" class="form-control" type="text" id="timelimit" name="timelimit"  placeholder="有效期"   value="" readonly="readonly"/>
+                                      <span class="add-on"><i class="icon-remove"></i></span>
+                                      <span class="add-on"><i class="icon-th"></i></span>
+                                  </div>
+                                  <div class="col-sm-3 m-b-xs">
+                                      <div class="checkbox">
+                                          <label><input type="checkbox" id="eff"   name="eff" />长期有效</label>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="row">
+
+                                  <div class="col-sm-3 m-b-xs">
+                                      <input size="16" class="form-control" type="text" id="birthday" name="birthday"  placeholder="生日"   value="" readonly="readonly"/>
+                                      <span class="add-on"><i class="icon-remove"></i></span>
+                                      <span class="add-on"><i class="icon-th"></i></span>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="ibox float-e-margins">
+                                  <div class="ibox-title">
+                                      <h5>联系方式</h5>
+                                  </div>
+                                  <div class="ibox-content" style="display: block;">
+                                      <div class="row">
+                                          <div class="col-sm-3 m-b-xs">
+                                              <input id="phone" name="phone" class="form-control" type="text"  placeholder="手机号码" />
+                                          </div>
+                                          <div class="col-sm-3 m-b-xs">
+                                              <input id="moblieno" name="moblieno" class="form-control" type="text"  placeholder="联系电话" />
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-sm-3 m-b-xs">
+                                              <input id="email" name="email" class="form-control" type="text"  placeholder="电子邮件" />
+                                          </div>
+                                          <div class="col-sm-3 m-b-xs">
+                                              <input id="fax" name="fax" class="form-control" type="text"  placeholder="传真" />
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-sm-3 m-b-xs">
+                                              <input id="address" name="address" class="form-control" type="text"  placeholder="通讯地址" />
+                                          </div>
+                                          <div class="col-sm-3 m-b-xs">
+                                              <input id="postcode" name="postcode" class="form-control" type="text"  placeholder="邮政编码" />
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-sm-3 m-b-xs">
+                                                  <select name="billtype" id="billtype" class="form-control" >
+                                                      <option value="0">--请选择对账单邮寄方式--</option>
+                                                      <option value="0" th:each="billtype:${billtypelist}" th:value="${billtype.getKeyvalue()}" th:text="${billtype.getCaption()}">--对账单邮寄方式--</option>
+                                                  </select>
+                                              </div>
+                                              <div class="col-sm-3 m-b-xs">
+                                                  <select name="billway" id="billway" class="form-control" >
+                                                      <option value="0">--请选着对账单邮寄途径--</option>
+                                                      <option value="0" th:each="billway:${billwaylist}" th:value="${billway.getKeyvalue()}" th:text="${billway.caption}" >--对账单邮寄途径--</option>
+                                                  </select>
+                                              </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="ibox float-e-margins">
+                              <div class="ibox-title">
+                                  <h5>帐户信息</h5>
+                              </div>
+                              <div class="ibox-content" style="display: block;">
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="capital" name="capital" class="form-control" type="text"    value="普通方式" readonly="readonly" />
+                                      </div>
+                                      <div class="col-sm-3 m-b-xs">
+                                          <!--<input id="bankname" name="bankname" class="form-control" type="text"  placeholder="银行名称" />-->
+                                          <select name="bankname" id="bankname" class="form-control" >
+                                              <option value="0">--请选着银行名称--</option>
+                                              <option value="0" th:each="bank:${banklist}" th:value="${bank.getKeyvalue()}" th:text="${bank.caption}" >--请选着银行名称--</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="province " name="province " class="form-control" type="text"  placeholder="开户行省份" />
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-6 m-b-xs">
+                                          <input id="bank" name="bank" class="form-control" type="text"  placeholder="开户银行" />
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="nameinbank" name="nameinbank" class="form-control" type="text"  placeholder="银行户名" />
+                                      </div>
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="bankaccount" name="bankaccount" class="form-control" type="text"  placeholder="银行账号" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="ibox float-e-margins">
+                              <div class="ibox-title">
+                                  <h5>其他信息</h5>
+                              </div>
+                              <div class="ibox-content" style="display: block;">
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="tacode" name="tacode" class="form-control" type="text"  placeholder="TA" />
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="szacco" name="szacco" class="form-control" type="text"  placeholder="深交所账号" />
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="shacco" name="shacco" class="form-control" type="text"  placeholder="上交所账号" />
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <select name="trade" id="trade" class="form-control" >
+                                              <option value="">--请选择行业--</option>
+                                              <option  th:each="trade:${tradelist}" th:value="${trade.getKeyvalue()}" th:text="${trade.caption}" >--请选择行业--</option>
+                                          </select>
+                                      </div>
+                                      <div class="col-sm-3 m-b-xs">
+                                      <select name="vocation" id="vocation" class="form-control" >
+                                          <option value="">--请选择职业--</option>
+                                          <option  th:each="vocation:${vocationlist}" th:value="${vocation.getKeyvalue()}" th:text="${vocation.caption}" >--请选择职业--</option>
+                                      </select>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <select name="income" id="income" class="form-control" >
+                                              <option value="">--请选择年收入--</option>
+                                              <option  th:each="income:${incomelist}" th:value="${income.getKeyvalue()}" th:text="${income.caption}" >--请选择年收入--</option>
+                                          </select>
+                                      </div>
+                                      <div class="col-sm-3 m-b-xs">
+                                          <select name="marry" id="marry" class="form-control" >
+                                              <option value="">--请选着婚姻状况--</option>
+                                              <option  th:each="marry:${marrylist}" th:value="${marry.getKeyvalue()}" th:text="${marry.caption}" >--请选着婚姻状况--</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-6 m-b-xs">
+                                         <input id="context" name="context" class="form-control" type="text"  placeholder="帐户备注" />
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="password" name="password" class="form-control" type="text"  placeholder="交易密码" />
+                                      </div>
+                                      <div class="col-sm-3 m-b-xs">
+                                          <input id="password_a" name="password_a" class="form-control" type="text"  placeholder="再次输入" />
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="ibox float-e-margins">
+                              <div class="ibox-title">
+                                  <!--<h5>其他信息</h5>-->
+                              </div>
+                              <div class="ibox-content" style="display: block;">
+                                  <div class="row">
+                                      <div class="col-sm-3 m-b-xs">
+                                          <button class="btn btn-primary btn-block" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;<strong>提交</strong></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+            </form>
+         </div>
         <div class="footer" th:include="footer :: copyright"></div>
     </div>
 </div>
@@ -304,6 +314,14 @@
 <!-- Mainly scripts -->
 <script th:src="@{/js/jquery-2.1.1.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>
+<!--<script th:src="@{/js/bootstrapValidator.js}"></script>-->
+<!--<script th:src="@{/js/bootstrapValidator.min.js}"></script>-->
+<script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
+
 <script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
 <script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 <!-- Flot -->
@@ -331,189 +349,207 @@
 <script th:src="@{/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
 <!-- Sparkline demo data  -->
 <script th:src="@{/js/demo/sparkline-demo.js}"></script>
-<script>
+<!-- Sweet alert -->
+
+<script th:inline="javascript">
+
+    var error = [[${error}]];
     $(document).ready(function () {
-
-        $('.chart').easyPieChart({
-            barColor: '#f8ac59',
-            scaleLength: 5,
-            lineWidth: 4,
-            size: 80
-        });
-
-        $('.chart2').easyPieChart({
-            barColor: '#1c84c6',
-            scaleLength: 5,
-            lineWidth: 4,
-            size: 80
-        });
-
-
-        function gd(year, month, day) {
-            return new Date(year, month - 1, day).getTime();
+        if(error!=null){
+            swal({
+                title : "温馨提示",
+                text : error
+            });
         }
 
-
-        var list2 = $('#data2').val();
-        var list3 = $('#data3').val();
-
-        list2 = list2.split(", ");
-        list3 = list3.split(",");
-
-        var thirtyDays = timeForMat(30);
-        var data3 = [];
-        var data2 = [];
-        var j = 0;
-        var t2 = thirtyDays['t2'];
-        var t1 = thirtyDays['t1'];
-        for (var i = t2; t1 >= i; i = i + 86400000) {
-            var temp2 = [i, parseInt(list2[j])]
-            var temp3 = [i, parseInt(list3[j])]
-            data2.push(temp2);
-            data3.push(temp3);
-            j++
-        }
-        function timeForMat(count) {
-            // 拼接时间
-            var time1 = new Date()
-            time1.setTime(time1.getTime())
-            console.log(time1)
-            var Y1 = time1.getFullYear()
-            var M1 = ((time1.getMonth() + 1) > 10 ? (time1.getMonth() + 1) : '0' + (time1.getMonth() + 1))
-            var D1 = (time1.getDate() > 10 ? time1.getDate() : '0' + time1.getDate())
-            var date1 = gd(Y1, M1, D1) // 当前时间
-            var time2 = new Date()
-            time2.setTime(time2.getTime() - (24 * 60 * 60 * 1000 * count))
-            console.log(time2)
-            var Y2 = time2.getFullYear()
-            var M2 = ((time2.getMonth() + 1) > 10 ? (time2.getMonth() + 1) : '0' + (time2.getMonth() + 1))
-            var D2 = (time2.getDate() > 10 ? time2.getDate() : '0' + time2.getDate())
-            var date2 = gd(Y2, M2, D2) // 当前时间
-            // 之前的7天或者30天
-            return {
-                t1: date1,
-                t2: date2
-            }
-        }
-
-        var dataset = [
-            {
-                label: "收入(元)",
-                data: data3,
-                color: "#1ab394",
-                bars: {
-                    show: true,
-                    align: "center",
-                    barWidth: 24 * 60 * 60 * 600,
-                    lineWidth: 0
-                }
-
-            },
-            {
-                label: "订单数",
-                data: data2,
-                yaxis: 2,
-                color: "#1C84C6",
-                lines: {
-                    lineWidth: 1,
-                    show: true,
-                    fill: true,
-                    fillColor: {
-                        colors: [{
-                            opacity: 0.2
-                        }, {
-                            opacity: 0.4
-                        }]
-                    }
-                },
-                splines: {
-                    show: false,
-                    tension: 0.6,
-                    lineWidth: 1,
-                    fill: 0.1
-                },
-            }
-        ];
-
-        var options = {
-            xaxis: {
-                mode: "time",
-                tickSize: [3, "day"],
-                tickLength: 0,
-                axisLabel: "Date",
-                axisLabelUseCanvas: true,
-                axisLabelFontSizePixels: 12,
-                axisLabelFontFamily: 'Arial',
-                axisLabelPadding: 10,
-                color: "#d5d5d5"
-            },
-            yaxes: [{
-                position: "left",
-//                max: 10070,
-                color: "#d5d5d5",
-                axisLabelUseCanvas: true,
-                axisLabelFontSizePixels: 12,
-                axisLabelFontFamily: 'Arial',
-                axisLabelPadding: 3
-            }, {
-                position: "right",
-                clolor: "#d5d5d5",
-                axisLabelUseCanvas: true,
-                axisLabelFontSizePixels: 12,
-                axisLabelFontFamily: ' Arial',
-                axisLabelPadding: 67
-            }
-            ],
-            legend: {
-                noColumns: 1,
-                labelBoxBorderColor: "#000000",
-                position: "nw"
-            },
-            grid: {
-                hoverable: false,
-                borderWidth: 0
-            }
-        };
-
-
-        var previousPoint = null, previousLabel = null;
-
-        $.plot($("#flot-dashboard-chart"), dataset, options);
-
-        var mapData = {
-            "US": 298,
-            "SA": 200,
-            "DE": 220,
-            "FR": 540,
-            "CN": 120,
-            "AU": 760,
-            "BR": 550,
-            "IN": 200,
-            "GB": 120,
-        };
-
-        $('#world-map').vectorMap({
-            map: 'world_mill_en',
-            backgroundColor: "transparent",
-            regionStyle: {
-                initial: {
-                    fill: '#e4e4e4',
-                    "fill-opacity": 0.9,
-                    stroke: 'none',
-                    "stroke-width": 0,
-                    "stroke-opacity": 0
-                }
-            },
-
-            series: {
-                regions: [{
-                    values: mapData,
-                    scale: ["#1ab394", "#22d6b1"],
-                    normalizeFunction: 'polynomial'
-                }]
-            },
+        /**
+         * 有效期
+         */
+        $('#timelimit').datetimepicker({
+            format:'yyyy-mm-dd',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
         });
+        /**
+         * 申请时间
+         */
+        $('#birthday').datetimepicker({
+            format:'yyyy-mm-dd',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+        /**
+         * 申请时间
+         */
+        $('#requesttime').datetimepicker({
+            format:'yyyy-mm-dd hh:ii:ss',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+
     });
+
+    /**
+     * 数据的检查
+     */
+    function checkdata() {
+        var  trusttype = $("#trusttype").val();
+        if($.StringBank(trusttype)){
+            toastr.error('请选着委托方式','提示');
+            $("#trusttype").focus();
+            return false;
+        }
+        var  requesttime = $("#requesttime").val();
+        if($.StringBank(requesttime)){
+            toastr.error('请输入申请时间','提示');
+            $("#requesttime").focus();
+            return false;
+        }
+        var  custname = $("#custname").val();
+        if($.StringBank(custname)){
+            toastr.error('请输入客户姓名','提示');
+            $("#custname").focus();
+            return false;
+        }
+        var  sex = $("#sex").val();
+        if($.StringBank(sex)){
+            toastr.error('请选着性别','提示');
+            $("#sex").focus();
+            return false;
+        }
+        var  cettype = $("#cettype").val();
+        if($.StringBank(cettype)){
+            toastr.error('请选着证件类型','提示');
+            $("#cettype").focus();
+            return false;
+        }
+        var  certno = $("#certno").val();
+        if($.StringBank(certno)){
+            toastr.error('请输入证件号码','提示');
+            $("#certno").focus();
+            return false;
+        }
+        var  certno_a = $("#certno_a").val();
+        if($.StringBank(certno_a)){
+            toastr.error('请输再次入证件号码','提示');
+            $("#certno_a").focus();
+            return false;
+        }
+        if(certno!=certno_a){
+            toastr.error('两次的证件号码不匹配!请核对','提示');
+            return false;
+        }
+        var  timelimit = $("#timelimit").val();
+        var  eff = $("#eff").prop('checked');
+        /*<![CDATA[*/
+            if($.StringBank(timelimit) && eff == false){
+                toastr.error('请输入证件有效期或选中长期有效按钮','提示');
+                return false;
+            }
+        /*]]>*/
+        var  birthday = $("#birthday").val();
+        if($.StringBank(birthday)){
+            $("#birthday").focus();
+            toastr.error('请输入您的生日','提示');
+            return false;
+        }
+        var  phone = $("#phone").val();
+        if($.StringBank(phone)){
+            $("#phone").focus();
+            toastr.error('请输入电话号码','提示');
+            return false;
+        }
+        var  moblieno = $("#moblieno").val();
+        var  email = $("#email").val();
+        var  fax = $("#fax").val();
+        var  address = $("#address").val();
+        if($.StringBank(address)){
+            $("#address").focus();
+            toastr.error('请输入通讯地址','提示');
+            return false;
+        }
+        var  postcode = $("#postcode").val();
+        if($.StringBank(postcode)){
+            $("#postcode").focus();
+            toastr.error('请输入邮政编码','提示');
+            return false;
+        }
+        var  billtype = $("#billtype").val();
+        var  billway = $("#billway").val();
+        var  bankname = $("#bankname").val();
+        if($.StringBank(bankname)){
+            $("#bankname").focus();
+            toastr.error('请选着银行名称','提示');
+            return false;
+        }
+        var  province = $("#province").val();
+        if($.StringBank(province)){
+            $("#province").focus();
+            toastr.error('请输入开户行省份','提示');
+            return false;
+        }
+        var  nameinbank = $("#nameinbank").val();
+        if($.StringBank(nameinbank)){
+            $("#nameinbank").focus();
+            toastr.error('请输入银行户名','提示');
+            return false;
+        }
+        var  bankaccount = $("#bankaccount").val();
+        if($.StringBank(bankaccount)){
+            $("#bankaccount").focus();
+            toastr.error('请输入银行账号','提示');
+            return false;
+        }
+        var  szacco = $("#szacco").val();
+        var  shacco = $("#shacco").val();
+        var  trade = $("#trade").val();
+        if($.StringBank(trade)){
+            $("#trade").focus();
+            toastr.error('请选着行业','提示');
+            return false;
+        }
+        var  vocation = $("#vocation").val();
+        if($.StringBank(vocation)){
+            $("#vocation").focus();
+            toastr.error('请选着职业','提示');
+            return false;
+        }
+        var  income = $("#income").val();
+        var  marry = $("#marry").val();
+        var  context = $("#context").val();
+        var  password = $("#password").val();
+        if($.StringBank(password)){
+            $("#password").focus();
+            toastr.error('请输入密码','提示');
+            return false;
+        }
+        var  password_a = $("#password_a").val();
+        if($.StringBank(password_a)){
+            $("#password_a").focus();
+            toastr.error('请再次输入密码','提示');
+            return false;
+        }
+        if(password!=password_a){
+            toastr.error('两次密码不一致，请核对！','提示');
+            return false;
+        }
+        return  true;
+    }
 </script>
 </body>
 </html>
