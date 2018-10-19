@@ -11,7 +11,7 @@
  Target Server Version : 50720
  File Encoding         : 65001
 
- Date: 16/10/2018 18:31:07
+ Date: 19/10/2018 17:46:43
 */
 
 SET NAMES utf8mb4;
@@ -5785,7 +5785,7 @@ INSERT INTO `metadb_idgenerator` VALUES ('SHARECOMPARE', 384, 1);
 INSERT INTO `metadb_idgenerator` VALUES ('SHARECURRENT', 372, 1);
 INSERT INTO `metadb_idgenerator` VALUES ('SHAREDETAIL', 124, 1);
 INSERT INTO `metadb_idgenerator` VALUES ('SPRTRELATION', 157, 1);
-INSERT INTO `metadb_idgenerator` VALUES ('SPRT_BUSINLOGGER', 5140, 1);
+INSERT INTO `metadb_idgenerator` VALUES ('SPRT_BUSINLOGGER', 5150, 1);
 INSERT INTO `metadb_idgenerator` VALUES ('SPRT_SYSMENU', 100000434, 1);
 INSERT INTO `metadb_idgenerator` VALUES ('SYSCONFIG', 3, 1);
 INSERT INTO `metadb_idgenerator` VALUES ('TARDEACCOINFO', 134, 1);
@@ -7415,7 +7415,7 @@ CREATE TABLE `sprt_businlogger`  (
   `VERSION` int(11) NOT NULL,
   `ENTITYNAME` varchar(24) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`OBJID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5141 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5151 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sprt_businlogger
@@ -12556,6 +12556,16 @@ INSERT INTO `sprt_businlogger` VALUES (5137, '1', 6, '访问[账户申请查询]
 INSERT INTO `sprt_businlogger` VALUES (5138, '1', 6, '访问[账户申请查询]!', '2017-07-03 09:59:28', '2017-07-03 09:59:28', '/jsp/query/accoRequestQuery.jsp', NULL, NULL, '219.140.204.4', '菜单', '2017-07-03 09:59:28', '2017-07-03 09:59:28', 0, 'SPRT_BUSINLOGGER');
 INSERT INTO `sprt_businlogger` VALUES (5139, '1', 4, '登录系统', '2018-10-10 16:25:55', '2018-10-10 16:25:56', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-10 16:25:56', '2018-10-10 16:25:56', 0, 'SPRT_BUSINLOGGER');
 INSERT INTO `sprt_businlogger` VALUES (5140, '1', 4, '登录系统', '2018-10-10 16:25:55', '2018-10-10 16:25:56', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-10 16:25:56', '2018-10-10 16:25:56', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5141, '1', 4, '登录系统', '2018-10-17 10:49:50', '2018-10-17 10:49:51', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-17 10:49:51', '2018-10-17 10:49:51', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5142, '1', 4, '登录系统', '2018-10-17 10:49:50', '2018-10-17 10:49:52', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-17 10:49:52', '2018-10-17 10:49:52', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5143, '1', 4, '登录系统', '2018-10-17 11:28:40', '2018-10-17 11:28:40', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-17 11:28:40', '2018-10-17 11:28:40', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5144, '1', 4, '登录系统', '2018-10-17 11:28:40', '2018-10-17 11:28:41', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-17 11:28:41', '2018-10-17 11:28:41', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5145, '1', 4, '登录系统', '2018-10-17 16:30:43', '2018-10-17 16:30:43', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-17 16:30:43', '2018-10-17 16:30:43', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5146, '1', 4, '登录系统', '2018-10-17 16:30:43', '2018-10-17 16:30:43', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-17 16:30:43', '2018-10-17 16:30:43', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5147, '1', 4, '登录系统', '2018-10-19 10:08:35', '2018-10-19 10:08:35', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-19 10:08:35', '2018-10-19 10:08:35', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5148, '1', 4, '登录系统', '2018-10-19 10:08:35', '2018-10-19 10:08:37', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-19 10:08:37', '2018-10-19 10:08:37', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5149, '1', 4, '登录系统', '2018-10-19 14:08:42', '2018-10-19 14:08:42', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-19 14:08:42', '2018-10-19 14:08:42', 0, 'SPRT_BUSINLOGGER');
+INSERT INTO `sprt_businlogger` VALUES (5150, '1', 4, '登录系统', '2018-10-19 14:08:42', '2018-10-19 14:08:43', '/logon.action', NULL, NULL, '0:0:0:0:0:0:0:1', '用户登录', '2018-10-19 14:08:43', '2018-10-19 14:08:43', 0, 'SPRT_BUSINLOGGER');
 
 -- ----------------------------
 -- Table structure for sprt_message
@@ -13657,9 +13667,9 @@ INSERT INTO `sys_resources` VALUES (64, '编辑公告', 'button', NULL, 'notice:
 INSERT INTO `sys_resources` VALUES (65, '删除公告', 'button', NULL, 'notice:delete', 61, 5, 0, 1, NULL, '2018-05-22 10:08:05', '2018-05-22 10:08:05');
 INSERT INTO `sys_resources` VALUES (66, '发布公告', 'button', NULL, 'notice:release', 61, 6, 0, 1, NULL, '2018-05-22 10:08:05', '2018-05-22 10:08:05');
 INSERT INTO `sys_resources` VALUES (67, '撤回公告', 'button', NULL, 'notice:withdraw', 61, 7, 0, 1, NULL, '2018-05-22 10:08:05', '2018-05-22 10:08:05');
-INSERT INTO `sys_resources` VALUES (68, '测试页面', 'menu', NULL, NULL, 0, 5, 0, 1, 'fa fa-desktop', '2018-05-22 10:08:05', '2018-05-22 10:08:05');
-INSERT INTO `sys_resources` VALUES (69, 'icons图标', 'menu', '/icons', 'icons', 68, 2, 0, 1, NULL, '2018-05-22 10:08:05', '2018-05-22 10:08:05');
-INSERT INTO `sys_resources` VALUES (70, 'shiro测试', 'menu', '/shiro', 'shiro', 68, 3, 0, 1, NULL, '2018-05-22 10:08:05', '2018-05-22 10:08:05');
+INSERT INTO `sys_resources` VALUES (68, '直销', 'menu', NULL, NULL, 0, 5, 0, 1, 'fa fa-desktop', '2018-05-22 10:08:05', '2018-05-22 10:08:05');
+INSERT INTO `sys_resources` VALUES (69, '开户', 'menu', '/account/', '', 68, 2, 0, 1, NULL, '2018-05-22 10:08:05', '2018-05-22 10:08:05');
+INSERT INTO `sys_resources` VALUES (70, '基金信息', 'menu', '/fund/', '', 68, 3, 0, 1, NULL, '2018-05-22 10:08:05', '2018-05-22 10:08:05');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -13917,7 +13927,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 'root', 'jvxGNjU2YTSDI/fbYhcZ84H0+65SCmOtfy5SdNiedfs=', '超级管理员', '15151551516', '', '843977358', NULL, NULL, 'https://static.zhyd.me/static/img/favicon.ico', 'ROOT', NULL, NULL, NULL, 'ZHYD', NULL, NULL, 0, 0, NULL, '0:0:0:0:0:0:0:1', '2018-08-15 14:08:50', 186, NULL, 1, '2018-01-02 09:32:15', '2018-08-15 14:12:59');
-INSERT INTO `sys_user` VALUES (2, 'admin', 'gXp2EbyZ+sB/A6QUMhiUJQ==', '管理员', '15151551516', '843977358@qq.com', '843977358', NULL, NULL, NULL, 'ADMIN', NULL, NULL, NULL, 'ZHYD', 1, 1, 0, 0, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '2018-10-16 17:36:36', 9, NULL, 1, '2018-01-02 15:56:34', '2018-10-16 17:36:36');
+INSERT INTO `sys_user` VALUES (2, 'admin', 'gXp2EbyZ+sB/A6QUMhiUJQ==', '管理员', '15151551516', '843977358@qq.com', '843977358', NULL, NULL, NULL, 'ADMIN', NULL, NULL, NULL, 'ZHYD', 1, 1, 0, 0, '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '2018-10-19 17:33:33', 93, NULL, 1, '2018-01-02 15:56:34', '2018-10-19 17:33:33');
 
 -- ----------------------------
 -- Table structure for sys_user_role
