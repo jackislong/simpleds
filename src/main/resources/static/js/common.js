@@ -69,6 +69,10 @@ StringUtils.replaceAll = function(str,s1,s2){
 		IsNumber:function (num) {
 
 		},
+		isCertNo:function (str) {
+		
+			return str.match(/^[1-9][0-9]{5}(19|20)[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|31)|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}([0-9]|x|X)$/);
+		},
 		IsPhone:function (phone) {
 			 var mobilePattern = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
 			 return mobilePattern.exec(phone);

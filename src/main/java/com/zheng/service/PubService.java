@@ -17,4 +17,25 @@ public interface PubService {
      * @return
      */
     List<DictionaryEntity>  selectDictByKeyNo(Integer keyno);
+
+
+    /**
+     * 获取新的客户编号
+     * @return
+     */
+    String  creatNewCustNO();
+
+    /**
+     * 获取新的交易编号
+     * @return
+     */
+    String  creatNewTradeAccoNo();
+
+    /**
+     * 获取新的基金编号
+     * @return
+     */
+    String  creatNewFundAccoNo();
+
+    public void  checkIsStartTrade(Integer trustTypeCode);
 }

@@ -6,6 +6,7 @@ import com.zheng.mapper.SysRoleEntityMapper;
 import com.zheng.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class RoleServiceImpl  implements RoleService {
     SysRoleEntityMapper roleEntityMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<SysRoleEntity> listRolesByUserId(Long id) {
         return roleEntityMapper.listRolesByUserId(id);
     }

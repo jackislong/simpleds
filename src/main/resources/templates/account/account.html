@@ -7,7 +7,8 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/bootstrap-datetimepicker.css}" rel="stylesheet"/>
     <link th:href="@{/css/bootstrap-datetimepicker.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <!--<link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>-->
     <link th:href="@{/css/plugins/toastr/toastr.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/animate.css}" rel="stylesheet"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
@@ -74,7 +75,7 @@
                               <div class="row">
 
                                   <div class="col-sm-3 m-b-xs">
-                                      <input id="custname" name="custname" class="form-control" type="text"  placeholder="客户姓名" />
+                                      <input id="custname" name="custname" class="form-control" type="text"  maxlength="60 "  placeholder="客户姓名" />
                                   </div>
                                   <div class="col-sm-3 m-b-xs">
                                       <select name="sex" id="sex" class="form-control" >
@@ -86,8 +87,8 @@
                               </div>
                               <div class="row">
                                   <div class="col-sm-3 m-b-xs">
-                                      <select name="cettype" id="cettype" class="form-control" >
-                                          <option value="0">--请选择证件类型--</option>
+                                      <select name="certtype" id="certtype" class="form-control" >
+                                          <option value="">--请选择证件类型--</option>
                                           <option value="0" th:each="cert:${certtypelist}" th:value="${cert.getKeyvalue()}" th:text="${cert.getCaption()}">--证件类型--</option>
                                       </select>
                                   </div>
@@ -114,7 +115,6 @@
                               </div>
 
                               <div class="row">
-
                                   <div class="col-sm-3 m-b-xs">
                                       <input size="16" class="form-control" type="text" id="birthday" name="birthday"  placeholder="生日"   value="" readonly="readonly"/>
                                       <span class="add-on"><i class="icon-remove"></i></span>
@@ -198,7 +198,7 @@
                                   </div>
                                   <div class="row">
                                       <div class="col-sm-3 m-b-xs">
-                                          <input id="province " name="province " class="form-control" type="text"  placeholder="开户行省份" />
+                                          <input id="province" name="province" class="form-control" type="text"  placeholder="开户行省份" />
                                       </div>
                                   </div>
                                   <div class="row">
@@ -317,7 +317,7 @@
 <script th:src="@{/js/common.js}"></script>
 <script th:src="@{/js/bootstrap-datetimepicker.js}"></script>
 <script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
-<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>
+<!--<script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>-->
 <!--<script th:src="@{/js/bootstrapValidator.js}"></script>-->
 <!--<script th:src="@{/js/bootstrapValidator.min.js}"></script>-->
 <script th:src="@{/js/plugins/toastr/toastr.min.js}"></script>
@@ -350,6 +350,7 @@
 <!-- Sparkline demo data  -->
 <script th:src="@{/js/demo/sparkline-demo.js}"></script>
 <!-- Sweet alert -->
+<script th:src="@{/js/account/account.js}"></script>
 
 <script th:inline="javascript">
 
@@ -403,153 +404,6 @@
         });
 
     });
-
-    /**
-     * 数据的检查
-     */
-    function checkdata() {
-        var  trusttype = $("#trusttype").val();
-        if($.StringBank(trusttype)){
-            toastr.error('请选着委托方式','提示');
-            $("#trusttype").focus();
-            return false;
-        }
-        var  requesttime = $("#requesttime").val();
-        if($.StringBank(requesttime)){
-            toastr.error('请输入申请时间','提示');
-            $("#requesttime").focus();
-            return false;
-        }
-        var  custname = $("#custname").val();
-        if($.StringBank(custname)){
-            toastr.error('请输入客户姓名','提示');
-            $("#custname").focus();
-            return false;
-        }
-        var  sex = $("#sex").val();
-        if($.StringBank(sex)){
-            toastr.error('请选着性别','提示');
-            $("#sex").focus();
-            return false;
-        }
-        var  cettype = $("#cettype").val();
-        if($.StringBank(cettype)){
-            toastr.error('请选着证件类型','提示');
-            $("#cettype").focus();
-            return false;
-        }
-        var  certno = $("#certno").val();
-        if($.StringBank(certno)){
-            toastr.error('请输入证件号码','提示');
-            $("#certno").focus();
-            return false;
-        }
-        var  certno_a = $("#certno_a").val();
-        if($.StringBank(certno_a)){
-            toastr.error('请输再次入证件号码','提示');
-            $("#certno_a").focus();
-            return false;
-        }
-        if(certno!=certno_a){
-            toastr.error('两次的证件号码不匹配!请核对','提示');
-            return false;
-        }
-        var  timelimit = $("#timelimit").val();
-        var  eff = $("#eff").prop('checked');
-        /*<![CDATA[*/
-            if($.StringBank(timelimit) && eff == false){
-                toastr.error('请输入证件有效期或选中长期有效按钮','提示');
-                return false;
-            }
-        /*]]>*/
-        var  birthday = $("#birthday").val();
-        if($.StringBank(birthday)){
-            $("#birthday").focus();
-            toastr.error('请输入您的生日','提示');
-            return false;
-        }
-        var  phone = $("#phone").val();
-        if($.StringBank(phone)){
-            $("#phone").focus();
-            toastr.error('请输入电话号码','提示');
-            return false;
-        }
-        var  moblieno = $("#moblieno").val();
-        var  email = $("#email").val();
-        var  fax = $("#fax").val();
-        var  address = $("#address").val();
-        if($.StringBank(address)){
-            $("#address").focus();
-            toastr.error('请输入通讯地址','提示');
-            return false;
-        }
-        var  postcode = $("#postcode").val();
-        if($.StringBank(postcode)){
-            $("#postcode").focus();
-            toastr.error('请输入邮政编码','提示');
-            return false;
-        }
-        var  billtype = $("#billtype").val();
-        var  billway = $("#billway").val();
-        var  bankname = $("#bankname").val();
-        if($.StringBank(bankname)){
-            $("#bankname").focus();
-            toastr.error('请选着银行名称','提示');
-            return false;
-        }
-        var  province = $("#province").val();
-        if($.StringBank(province)){
-            $("#province").focus();
-            toastr.error('请输入开户行省份','提示');
-            return false;
-        }
-        var  nameinbank = $("#nameinbank").val();
-        if($.StringBank(nameinbank)){
-            $("#nameinbank").focus();
-            toastr.error('请输入银行户名','提示');
-            return false;
-        }
-        var  bankaccount = $("#bankaccount").val();
-        if($.StringBank(bankaccount)){
-            $("#bankaccount").focus();
-            toastr.error('请输入银行账号','提示');
-            return false;
-        }
-        var  szacco = $("#szacco").val();
-        var  shacco = $("#shacco").val();
-        var  trade = $("#trade").val();
-        if($.StringBank(trade)){
-            $("#trade").focus();
-            toastr.error('请选着行业','提示');
-            return false;
-        }
-        var  vocation = $("#vocation").val();
-        if($.StringBank(vocation)){
-            $("#vocation").focus();
-            toastr.error('请选着职业','提示');
-            return false;
-        }
-        var  income = $("#income").val();
-        var  marry = $("#marry").val();
-        var  context = $("#context").val();
-        var  password = $("#password").val();
-        if($.StringBank(password)){
-            $("#password").focus();
-            toastr.error('请输入密码','提示');
-            return false;
-        }
-        var  password_a = $("#password_a").val();
-        if($.StringBank(password_a)){
-            $("#password_a").focus();
-            toastr.error('请再次输入密码','提示');
-            return false;
-        }
-        if(password!=password_a){
-            toastr.error('两次密码不一致，请核对！','提示');
-            return false;
-        }
-        return  true;
-    }
 </script>
 </body>
 </html>

@@ -363,7 +363,7 @@
     sur.role_id = #{roleId}
   </select>
 
-  <select id="getByUserName" parameterType="String" resultMap="BaseResultMap">
+  <select id="getByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_user

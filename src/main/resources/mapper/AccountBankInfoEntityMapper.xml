@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zheng.mapper.AccountBankInfoEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zheng.entity.AccountBankInfoEntity" >
+    <id column="OBJID" property="objid" jdbcType="INTEGER" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="IDCODE" property="idcode" jdbcType="VARCHAR" />
+    <result column="BANKNO" property="bankno" jdbcType="CHAR" />
+    <result column="BANKACCO" property="bankacco" jdbcType="VARCHAR" />
+    <result column="BANKNAME" property="bankname" jdbcType="VARCHAR" />
+    <result column="NAMEINBANK" property="nameinbank" jdbcType="VARCHAR" />
+    <result column="capitalMode" property="capitalmode" jdbcType="CHAR" />
+    <result column="PROVINCENO" property="provinceno" jdbcType="CHAR" />
+    <result column="CITYNO" property="cityno" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+    <result column="CREATETIMESTAMP" property="createtimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIMESTAMP" property="updatetimestamp" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="ENTITYNAME" property="entityname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OBJID, CUSTNO, IDCODE, BANKNO, BANKACCO, BANKNAME, NAMEINBANK, capitalMode, PROVINCENO, 
+    CITYNO, STATE, CREATETIMESTAMP, UPDATETIMESTAMP, VERSION, ENTITYNAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from accountbankinfo
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from accountbankinfo
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zheng.entity.AccountBankInfoEntity" >
+    insert into accountbankinfo (OBJID, CUSTNO, IDCODE, 
+      BANKNO, BANKACCO, BANKNAME, 
+      NAMEINBANK, capitalMode, PROVINCENO, 
+      CITYNO, STATE, CREATETIMESTAMP, 
+      UPDATETIMESTAMP, VERSION, ENTITYNAME
+      )
+    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{idcode,jdbcType=VARCHAR}, 
+      #{bankno,jdbcType=CHAR}, #{bankacco,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, 
+      #{nameinbank,jdbcType=VARCHAR}, #{capitalmode,jdbcType=CHAR}, #{provinceno,jdbcType=CHAR}, 
+      #{cityno,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{createtimestamp,jdbcType=TIMESTAMP}, 
+      #{updatetimestamp,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{entityname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.entity.AccountBankInfoEntity" >
+    insert into accountbankinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        OBJID,
+      </if>
+      <if test="custno != null" >
+        CUSTNO,
+      </if>
+      <if test="idcode != null" >
+        IDCODE,
+      </if>
+      <if test="bankno != null" >
+        BANKNO,
+      </if>
+      <if test="bankacco != null" >
+        BANKACCO,
+      </if>
+      <if test="bankname != null" >
+        BANKNAME,
+      </if>
+      <if test="nameinbank != null" >
+        NAMEINBANK,
+      </if>
+      <if test="capitalmode != null" >
+        capitalMode,
+      </if>
+      <if test="provinceno != null" >
+        PROVINCENO,
+      </if>
+      <if test="cityno != null" >
+        CITYNO,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP,
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        #{objid,jdbcType=INTEGER},
+      </if>
+      <if test="custno != null" >
+        #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcode != null" >
+        #{idcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankno != null" >
+        #{bankno,jdbcType=CHAR},
+      </if>
+      <if test="bankacco != null" >
+        #{bankacco,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="nameinbank != null" >
+        #{nameinbank,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalmode != null" >
+        #{capitalmode,jdbcType=CHAR},
+      </if>
+      <if test="provinceno != null" >
+        #{provinceno,jdbcType=CHAR},
+      </if>
+      <if test="cityno != null" >
+        #{cityno,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        #{entityname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.entity.AccountBankInfoEntity" >
+    update accountbankinfo
+    <set >
+      <if test="custno != null" >
+        CUSTNO = #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcode != null" >
+        IDCODE = #{idcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankno != null" >
+        BANKNO = #{bankno,jdbcType=CHAR},
+      </if>
+      <if test="bankacco != null" >
+        BANKACCO = #{bankacco,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        BANKNAME = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="nameinbank != null" >
+        NAMEINBANK = #{nameinbank,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalmode != null" >
+        capitalMode = #{capitalmode,jdbcType=CHAR},
+      </if>
+      <if test="provinceno != null" >
+        PROVINCENO = #{provinceno,jdbcType=CHAR},
+      </if>
+      <if test="cityno != null" >
+        CITYNO = #{cityno,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=CHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME = #{entityname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.entity.AccountBankInfoEntity" >
+    update accountbankinfo
+    set CUSTNO = #{custno,jdbcType=VARCHAR},
+      IDCODE = #{idcode,jdbcType=VARCHAR},
+      BANKNO = #{bankno,jdbcType=CHAR},
+      BANKACCO = #{bankacco,jdbcType=VARCHAR},
+      BANKNAME = #{bankname,jdbcType=VARCHAR},
+      NAMEINBANK = #{nameinbank,jdbcType=VARCHAR},
+      capitalMode = #{capitalmode,jdbcType=CHAR},
+      PROVINCENO = #{provinceno,jdbcType=CHAR},
+      CITYNO = #{cityno,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=CHAR},
+      CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER},
+      ENTITYNAME = #{entityname,jdbcType=VARCHAR}
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+</mapper>

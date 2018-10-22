@@ -1,14 +1,17 @@
 package com.zheng.controller;
 
-import com.zheng.business.AccountService;
+import com.zheng.business.AccountBIZService;
+import com.zheng.entity.CustInfoEntity;
 import com.zheng.service.PubService;
+import org.apache.commons.collections.map.CaseInsensitiveMap;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.Iterator;
 
 
 /**
@@ -25,7 +28,7 @@ public class AccountController {
     PubService  pubService;
 
     @Autowired
-    AccountService  accountService;
+    AccountBIZService accountService;
 
     @RequestMapping(value = "/")
     public String account(ModelMap modelMap) {
@@ -65,7 +68,16 @@ public class AccountController {
 
     @RequestMapping(value = "/openaccount")
     public String openaccount(HttpServletRequest  request,ModelMap modelMap){
-        accountService.openaccount((HashMap<String, String[]>) request.getParameterMap());
+        CaseInsensitiveMap parmMap =  new CaseInsensitiveMap();
+        Iterator iterator =  request.getParameterMap().keySet().iterator();
+        while (iterator.hasNext()){
+            String key = (String)iterator.next();
+            Object  value = request.getParameter(key);
+            parmMap.put(key,value);
+        }
+        CustInfoEntity custInfoEntity = new CustInfoEntity();
+        BeanUtils.copyProperties(parmMap,custInfoEntity);
+        accountService.openaccount(parmMap);
         modelMap.addAttribute("error","开户成功");
         return "redirect:/account/";
     }

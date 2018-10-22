@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zheng.mapper.FundAccoInfoEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zheng.entity.FundAccoInfoEntity" >
+    <id column="OBJID" property="objid" jdbcType="INTEGER" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="FUNDACCO" property="fundacco" jdbcType="VARCHAR" />
+    <result column="OPENDATE" property="opendate" jdbcType="VARCHAR" />
+    <result column="TACODE" property="tacode" jdbcType="VARCHAR" />
+    <result column="CREATETIMESTAMP" property="createtimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIMESTAMP" property="updatetimestamp" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="ENTITYNAME" property="entityname" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OBJID, CUSTNO, FUNDACCO, OPENDATE, TACODE, CREATETIMESTAMP, UPDATETIMESTAMP, VERSION, 
+    ENTITYNAME, STATE
+  </sql>
+
+  <select id="selectFundAccoInfoByTradeAccoAndTaCode"  resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT f.*  from fundaccoinfo   f INNER JOIN  accorelainfo  a  ON  f.FUNDACCO = a.FUNDACCO
+    WHERE  a.TRADEACCO = #{tradeacco,jdbcType=VARCHAR}
+    and    a.TACODE  =  #{tacode,jdbcType=VARCHAR}
+     ORDER  BY f.fundacco
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from fundaccoinfo
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fundaccoinfo
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zheng.entity.FundAccoInfoEntity" >
+    insert into fundaccoinfo (OBJID, CUSTNO, FUNDACCO, 
+      OPENDATE, TACODE, CREATETIMESTAMP, 
+      UPDATETIMESTAMP, VERSION, ENTITYNAME, 
+      STATE)
+    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{fundacco,jdbcType=VARCHAR}, 
+      #{opendate,jdbcType=VARCHAR}, #{tacode,jdbcType=VARCHAR}, #{createtimestamp,jdbcType=TIMESTAMP}, 
+      #{updatetimestamp,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{entityname,jdbcType=VARCHAR}, 
+      #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.entity.FundAccoInfoEntity" >
+    insert into fundaccoinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        OBJID,
+      </if>
+      <if test="custno != null" >
+        CUSTNO,
+      </if>
+      <if test="fundacco != null" >
+        FUNDACCO,
+      </if>
+      <if test="opendate != null" >
+        OPENDATE,
+      </if>
+      <if test="tacode != null" >
+        TACODE,
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP,
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        #{objid,jdbcType=INTEGER},
+      </if>
+      <if test="custno != null" >
+        #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="fundacco != null" >
+        #{fundacco,jdbcType=VARCHAR},
+      </if>
+      <if test="opendate != null" >
+        #{opendate,jdbcType=VARCHAR},
+      </if>
+      <if test="tacode != null" >
+        #{tacode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        #{entityname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.entity.FundAccoInfoEntity" >
+    update fundaccoinfo
+    <set >
+      <if test="custno != null" >
+        CUSTNO = #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="fundacco != null" >
+        FUNDACCO = #{fundacco,jdbcType=VARCHAR},
+      </if>
+      <if test="opendate != null" >
+        OPENDATE = #{opendate,jdbcType=VARCHAR},
+      </if>
+      <if test="tacode != null" >
+        TACODE = #{tacode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME = #{entityname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.entity.FundAccoInfoEntity" >
+    update fundaccoinfo
+    set CUSTNO = #{custno,jdbcType=VARCHAR},
+      FUNDACCO = #{fundacco,jdbcType=VARCHAR},
+      OPENDATE = #{opendate,jdbcType=VARCHAR},
+      TACODE = #{tacode,jdbcType=VARCHAR},
+      CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER},
+      ENTITYNAME = #{entityname,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=CHAR}
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+</mapper>
