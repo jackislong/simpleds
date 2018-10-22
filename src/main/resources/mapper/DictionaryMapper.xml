@@ -17,6 +17,9 @@
     ENTITYNAME
   </sql>
 
+
+
+
   <select id="selectDictionaryByKey" resultMap="BaseResultMap" parameterType="Integer">
     select
     <include refid="Base_Column_List" />

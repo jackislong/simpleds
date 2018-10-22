@@ -41,19 +41,19 @@ $(function () {
     })
 
     $("#email").bind("blur",function () {
-        if(StringUtils.isNotBlank($("#email").val()) && StringUtils.isEmail($("#email").val())){
+        if(StringUtils.isNotBlank($("#email").val()) && !StringUtils.isEmail($("#email").val())){
             toastr.error('电子邮件格式有误，请核对','提示');
         }
     })
 
     $("#fax").bind("blur",function () {
-        if(StringUtils.isNotBlank($("#fax").val()) && StringUtils.isFax($("#fax").val())){
+        if(StringUtils.isNotBlank($("#fax").val()) && !StringUtils.isFax($("#fax").val())){
             toastr.error('传真格式有误，请核对','提示');
         }
     })
 
     $("#postcode").bind("blur",function () {
-        if(StringUtils.isNotBlank($("#postcode").val()) && StringUtils.isZipNo($("#postcode").val())){
+        if(StringUtils.isNotBlank($("#postcode").val()) && !StringUtils.isZipNo($("#postcode").val())){
             toastr.error('邮政编码格式有误，请核对','提示');
         }
     })
