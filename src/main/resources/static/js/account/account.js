@@ -10,6 +10,15 @@ $(function () {
         }
     })
 
+    $("#eff").bind("click",function () {
+        var  checked=$("#eff").prop('checked');
+        if(checked){
+            $("#limit").hide()
+        }else{
+            $("#limit").show()
+        }
+    })
+
     $("#certno").bind("blur",function () {
         if(StringUtils.isBlank($("#certno").val())){
             toastr.error('请输入证件号码','提示');
@@ -171,7 +180,17 @@ function checkdata() {
         return false;
     }
     var  szacco = $("#szacco").val();
+    if(StringUtils.isNotBlank(szacco) && StringUtils.isAcco(szacco)){
+        $("#szacco").focus();
+        toastr.error('账号格式输入有误,清核对','提示');
+        return false;
+    }
     var  shacco = $("#shacco").val();
+    if(StringUtils.isNotBlank(shacco) && StringUtils.isAcco(shacco)){
+        $("#shacco").focus();
+        toastr.error('账号格式输入有误,清核对','提示');
+        return false;
+    }
     var  trade = $("#trade").val();
     if($.StringBank(trade)){
         $("#trade").focus();
@@ -185,6 +204,12 @@ function checkdata() {
         return false;
     }
     var  income = $("#income").val();
+    if(StringUtils.isNotBlank(income) && !StringUtils.isAllNumber(income)){
+        $("#income").focus();
+        toastr.error('请输入数字','提示');
+        return false;
+    }
+
     var  marry = $("#marry").val();
     var  context = $("#context").val();
     var  password = $("#password").val();

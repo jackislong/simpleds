@@ -1,13 +1,14 @@
 package com.zheng.service.impl;
 
-import com.zheng.entity.CustInfoEntity;
-import com.zheng.entity.FundAccoInfoEntity;
-import com.zheng.mapper.CustInfoEntityMapper;
-import com.zheng.mapper.FundAccoInfoEntityMapper;
+import com.zheng.bean.DateTimeBean;
+import com.zheng.entity.*;
+import com.zheng.mapper.*;
 import com.zheng.service.AccountService;
+import com.zheng.service.PubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,48 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     FundAccoInfoEntityMapper  fundAccoInfoEntityMapper;
+
+    @Autowired
+    AccountBankInfoEntityMapper  bankInfoEntityMapper;
+
+
+    @Autowired
+    AccorelaInfoEntityMapper  accorelaInfoEntityMapper;
+
+
+    @Autowired
+    CustPassWordEntityMapper  custPassWordEntityMapper;
+
+    @Autowired
+    TradeAccoInfoEntityMapper  tradeAccoInfoEntityMapper;
+
+
+    @Autowired
+    CustPersonEntityMapper   custPersonEntityMapper;
+
+    @Autowired
+    AccoTrustEntityMapper  accoTrustEntityMapper;
+
+    @Autowired
+    PubService  pubService;
+
+    @Override
+    public AccoTrustEntity buileAccoTrust(CustInfoEntity custInfo, FundAccoInfoEntity fundAccoInfo, TradeAccoInfoEntity tradeAccoInfo, DateTimeBean dateTimeBean) {
+        AccoTrustEntity  accoTrust = new AccoTrustEntity();
+        accoTrust.setTrustrequestno(pubService.creatNewAccoTrustRquestNo());
+        accoTrust.setTacode(fundAccoInfo.getTacode());
+        accoTrust.setCusttype(custInfo.getCusttype());
+        accoTrust.setCustno(custInfo.getCustno());
+        accoTrust.setIdentitytype(custInfo.getIdentitytype());
+        accoTrust.setIdentityno(custInfo.getIdentityno());
+        accoTrust.setFundacco(fundAccoInfo.getFundacco());
+        accoTrust.setTradeacco(tradeAccoInfo.getTradeacco());
+        accoTrust.setRequestdate(dateTimeBean.getTradeDate());
+        accoTrust.setRequesttime(dateTimeBean.getTradeTime());
+        accoTrust.setCustomname(custInfo.getCustomname());
+        return accoTrust;
+    }
+
     @Override
     public CustInfoEntity selectCustInfoByCertTypeAndCertNo(String certType, String certNo) {
         Map parMap = new HashMap();
@@ -33,7 +76,7 @@ public class AccountServiceImpl implements AccountService {
         parMap.put("certNo",certNo);
          List<CustInfoEntity> resultList=custInfoEntityMapper.selectCustInfoByCertTypeAndCertNo(parMap);
         if(resultList!= null && !resultList.isEmpty()){
-            resultList.get(0);
+           return   resultList.get(0);
         }
         return null;
     }
@@ -108,6 +151,65 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public int saveCustInfo(CustInfoEntity custInfoEntity) {
+        custInfoEntity.setVersion(0);
+        custInfoEntity.setCreatetimestamp(new Date());
+        custInfoEntity.setUpdatetimestamp(new Date());
         return custInfoEntityMapper.insert(custInfoEntity);
+    }
+
+    @Override
+    public int saveFundAccoInfo(FundAccoInfoEntity fundAccoInfoEntity) {
+        fundAccoInfoEntity.setVersion(0);
+        fundAccoInfoEntity.setCreatetimestamp(new Date());
+        fundAccoInfoEntity.setUpdatetimestamp(new Date());
+        return fundAccoInfoEntityMapper.insert(fundAccoInfoEntity);
+    }
+
+    @Override
+    public int saveTradeAccoInfo(TradeAccoInfoEntity tradeAccoInfoEntity) {
+        tradeAccoInfoEntity.setVersion(0);
+        tradeAccoInfoEntity.setCreatetimestamp(new Date());
+        tradeAccoInfoEntity.setUpdatetimestamp(new Date());
+        return tradeAccoInfoEntityMapper.insert(tradeAccoInfoEntity);
+    }
+
+    @Override
+    public int saveAccoRealtion(AccorelaInfoEntity accorelaInfoEntity) {
+        accorelaInfoEntity.setVersion(0);
+        accorelaInfoEntity.setCreatetimestamp(new Date());
+        accorelaInfoEntity.setUpdatetimestamp(new Date());
+        return accorelaInfoEntityMapper.insert(accorelaInfoEntity);
+    }
+
+    @Override
+    public int saveBankInfo(AccountBankInfoEntity bankInfoEntity) {
+        bankInfoEntity.setVersion(0);
+        bankInfoEntity.setCreatetimestamp(new Date());
+        bankInfoEntity.setUpdatetimestamp(new Date());
+        return bankInfoEntityMapper.insert(bankInfoEntity);
+    }
+
+    @Override
+    public int saveCustPassWord(CustPassWordEntity passWordEntity) {
+        passWordEntity.setVersion(0);
+        passWordEntity.setCreatetimestamp(new Date());
+        passWordEntity.setUpdatetimestamp(new Date());
+        return custPassWordEntityMapper.insert(passWordEntity);
+    }
+
+    @Override
+    public int saveCustPerson(CustPersonEntity custPersonEntity) {
+        custPersonEntity.setVersion(0);
+        custPersonEntity.setCreatetimestamp(new Date());
+        custPersonEntity.setUpdatetimestamp(new Date());
+        return custPersonEntityMapper.insert(custPersonEntity);
+    }
+
+    @Override
+    public int saveAccoTrust(AccoTrustEntity accoTrustEntity) {
+        accoTrustEntity.setVersion(0);
+        accoTrustEntity.setCreatetimestamp(new Date());
+        accoTrustEntity.setUpdatetimestamp(new Date());
+        return accoTrustEntityMapper.insert(accoTrustEntity);
     }
 }

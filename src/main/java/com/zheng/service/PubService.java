@@ -37,5 +37,23 @@ public interface PubService {
      */
     String  creatNewFundAccoNo();
 
+    /**
+     * 检查是否启动交易
+     * @param trustTypeCode
+     */
     public void  checkIsStartTrade(Integer trustTypeCode);
+
+    /**
+     * 检查是否满18岁
+     * @param certtNo
+     * @return
+     */
+    public Boolean  checkIsAdult(String certtNo);
+
+
+    /**
+     * 创建新的委托编号
+     * @return
+     */
+    public String  creatNewAccoTrustRquestNo();
 }

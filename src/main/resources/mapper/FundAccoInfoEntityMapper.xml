@@ -36,11 +36,11 @@
     where OBJID = #{objid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zheng.entity.FundAccoInfoEntity" >
-    insert into fundaccoinfo (OBJID, CUSTNO, FUNDACCO, 
+    insert into fundaccoinfo ( CUSTNO, FUNDACCO,
       OPENDATE, TACODE, CREATETIMESTAMP, 
       UPDATETIMESTAMP, VERSION, ENTITYNAME, 
       STATE)
-    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{fundacco,jdbcType=VARCHAR}, 
+    values ( #{custno,jdbcType=VARCHAR}, #{fundacco,jdbcType=VARCHAR},
       #{opendate,jdbcType=VARCHAR}, #{tacode,jdbcType=VARCHAR}, #{createtimestamp,jdbcType=TIMESTAMP}, 
       #{updatetimestamp,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{entityname,jdbcType=VARCHAR}, 
       #{state,jdbcType=CHAR})

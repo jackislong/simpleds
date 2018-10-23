@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zheng.mapper.AccoTrustEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zheng.entity.AccoTrustEntity" >
+    <id column="OBJID" property="objid" jdbcType="INTEGER" />
+    <result column="CUSTTYPE" property="custtype" jdbcType="CHAR" />
+    <result column="TRUSTTYPE" property="trusttype" jdbcType="CHAR" />
+    <result column="CUSTOMNAME" property="customname" jdbcType="VARCHAR" />
+    <result column="TRUSTREQUESTNO" property="trustrequestno" jdbcType="VARCHAR" />
+    <result column="TRADEACCO" property="tradeacco" jdbcType="VARCHAR" />
+    <result column="FUNDACCO" property="fundacco" jdbcType="VARCHAR" />
+    <result column="REQUESTDATE" property="requestdate" jdbcType="VARCHAR" />
+    <result column="REQUESTTIME" property="requesttime" jdbcType="VARCHAR" />
+    <result column="OPERATORNO" property="operatorno" jdbcType="VARCHAR" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="BUSINCODE" property="busincode" jdbcType="CHAR" />
+    <result column="IDENTITYNO" property="identityno" jdbcType="VARCHAR" />
+    <result column="TACODE" property="tacode" jdbcType="VARCHAR" />
+    <result column="CONFIRMFLAG" property="confirmflag" jdbcType="CHAR" />
+    <result column="CREATETIMESTAMP" property="createtimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIMESTAMP" property="updatetimestamp" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="ENTITYNAME" property="entityname" jdbcType="VARCHAR" />
+    <result column="DEALFLAG" property="dealflag" jdbcType="CHAR" />
+    <result column="IDENTITYTYPE" property="identitytype" jdbcType="CHAR" />
+    <result column="FROZENCAUSE" property="frozencause" jdbcType="CHAR" />
+    <result column="FROZENENDDATE" property="frozenenddate" jdbcType="VARCHAR" />
+    <result column="CAPITALMODE" property="capitalmode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OBJID, CUSTTYPE, TRUSTTYPE, CUSTOMNAME, TRUSTREQUESTNO, TRADEACCO, FUNDACCO, REQUESTDATE, 
+    REQUESTTIME, OPERATORNO, CUSTNO, BUSINCODE, IDENTITYNO, TACODE, CONFIRMFLAG, CREATETIMESTAMP, 
+    UPDATETIMESTAMP, VERSION, ENTITYNAME, DEALFLAG, IDENTITYTYPE, FROZENCAUSE, FROZENENDDATE, 
+    CAPITALMODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from accotrust
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from accotrust
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zheng.entity.AccoTrustEntity" >
+    insert into accotrust ( CUSTTYPE, TRUSTTYPE,
+      CUSTOMNAME, TRUSTREQUESTNO, TRADEACCO, 
+      FUNDACCO, REQUESTDATE, REQUESTTIME, 
+      OPERATORNO, CUSTNO, BUSINCODE, 
+      IDENTITYNO, TACODE, CONFIRMFLAG, 
+      CREATETIMESTAMP, UPDATETIMESTAMP, VERSION, 
+      ENTITYNAME, DEALFLAG, IDENTITYTYPE, 
+      FROZENCAUSE, FROZENENDDATE, CAPITALMODE
+      )
+    values ( #{custtype,jdbcType=CHAR}, #{trusttype,jdbcType=CHAR},
+      #{customname,jdbcType=VARCHAR}, #{trustrequestno,jdbcType=VARCHAR}, #{tradeacco,jdbcType=VARCHAR}, 
+      #{fundacco,jdbcType=VARCHAR}, #{requestdate,jdbcType=VARCHAR}, #{requesttime,jdbcType=VARCHAR}, 
+      #{operatorno,jdbcType=VARCHAR}, #{custno,jdbcType=VARCHAR}, #{busincode,jdbcType=CHAR}, 
+      #{identityno,jdbcType=VARCHAR}, #{tacode,jdbcType=VARCHAR}, #{confirmflag,jdbcType=CHAR}, 
+      #{createtimestamp,jdbcType=TIMESTAMP}, #{updatetimestamp,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
+      #{entityname,jdbcType=VARCHAR}, #{dealflag,jdbcType=CHAR}, #{identitytype,jdbcType=CHAR}, 
+      #{frozencause,jdbcType=CHAR}, #{frozenenddate,jdbcType=VARCHAR}, #{capitalmode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.entity.AccoTrustEntity" >
+    insert into accotrust
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        OBJID,
+      </if>
+      <if test="custtype != null" >
+        CUSTTYPE,
+      </if>
+      <if test="trusttype != null" >
+        TRUSTTYPE,
+      </if>
+      <if test="customname != null" >
+        CUSTOMNAME,
+      </if>
+      <if test="trustrequestno != null" >
+        TRUSTREQUESTNO,
+      </if>
+      <if test="tradeacco != null" >
+        TRADEACCO,
+      </if>
+      <if test="fundacco != null" >
+        FUNDACCO,
+      </if>
+      <if test="requestdate != null" >
+        REQUESTDATE,
+      </if>
+      <if test="requesttime != null" >
+        REQUESTTIME,
+      </if>
+      <if test="operatorno != null" >
+        OPERATORNO,
+      </if>
+      <if test="custno != null" >
+        CUSTNO,
+      </if>
+      <if test="busincode != null" >
+        BUSINCODE,
+      </if>
+      <if test="identityno != null" >
+        IDENTITYNO,
+      </if>
+      <if test="tacode != null" >
+        TACODE,
+      </if>
+      <if test="confirmflag != null" >
+        CONFIRMFLAG,
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP,
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME,
+      </if>
+      <if test="dealflag != null" >
+        DEALFLAG,
+      </if>
+      <if test="identitytype != null" >
+        IDENTITYTYPE,
+      </if>
+      <if test="frozencause != null" >
+        FROZENCAUSE,
+      </if>
+      <if test="frozenenddate != null" >
+        FROZENENDDATE,
+      </if>
+      <if test="capitalmode != null" >
+        CAPITALMODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        #{objid,jdbcType=INTEGER},
+      </if>
+      <if test="custtype != null" >
+        #{custtype,jdbcType=CHAR},
+      </if>
+      <if test="trusttype != null" >
+        #{trusttype,jdbcType=CHAR},
+      </if>
+      <if test="customname != null" >
+        #{customname,jdbcType=VARCHAR},
+      </if>
+      <if test="trustrequestno != null" >
+        #{trustrequestno,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeacco != null" >
+        #{tradeacco,jdbcType=VARCHAR},
+      </if>
+      <if test="fundacco != null" >
+        #{fundacco,jdbcType=VARCHAR},
+      </if>
+      <if test="requestdate != null" >
+        #{requestdate,jdbcType=VARCHAR},
+      </if>
+      <if test="requesttime != null" >
+        #{requesttime,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorno != null" >
+        #{operatorno,jdbcType=VARCHAR},
+      </if>
+      <if test="custno != null" >
+        #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="busincode != null" >
+        #{busincode,jdbcType=CHAR},
+      </if>
+      <if test="identityno != null" >
+        #{identityno,jdbcType=VARCHAR},
+      </if>
+      <if test="tacode != null" >
+        #{tacode,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmflag != null" >
+        #{confirmflag,jdbcType=CHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        #{entityname,jdbcType=VARCHAR},
+      </if>
+      <if test="dealflag != null" >
+        #{dealflag,jdbcType=CHAR},
+      </if>
+      <if test="identitytype != null" >
+        #{identitytype,jdbcType=CHAR},
+      </if>
+      <if test="frozencause != null" >
+        #{frozencause,jdbcType=CHAR},
+      </if>
+      <if test="frozenenddate != null" >
+        #{frozenenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalmode != null" >
+        #{capitalmode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.entity.AccoTrustEntity" >
+    update accotrust
+    <set >
+      <if test="custtype != null" >
+        CUSTTYPE = #{custtype,jdbcType=CHAR},
+      </if>
+      <if test="trusttype != null" >
+        TRUSTTYPE = #{trusttype,jdbcType=CHAR},
+      </if>
+      <if test="customname != null" >
+        CUSTOMNAME = #{customname,jdbcType=VARCHAR},
+      </if>
+      <if test="trustrequestno != null" >
+        TRUSTREQUESTNO = #{trustrequestno,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeacco != null" >
+        TRADEACCO = #{tradeacco,jdbcType=VARCHAR},
+      </if>
+      <if test="fundacco != null" >
+        FUNDACCO = #{fundacco,jdbcType=VARCHAR},
+      </if>
+      <if test="requestdate != null" >
+        REQUESTDATE = #{requestdate,jdbcType=VARCHAR},
+      </if>
+      <if test="requesttime != null" >
+        REQUESTTIME = #{requesttime,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorno != null" >
+        OPERATORNO = #{operatorno,jdbcType=VARCHAR},
+      </if>
+      <if test="custno != null" >
+        CUSTNO = #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="busincode != null" >
+        BUSINCODE = #{busincode,jdbcType=CHAR},
+      </if>
+      <if test="identityno != null" >
+        IDENTITYNO = #{identityno,jdbcType=VARCHAR},
+      </if>
+      <if test="tacode != null" >
+        TACODE = #{tacode,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmflag != null" >
+        CONFIRMFLAG = #{confirmflag,jdbcType=CHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME = #{entityname,jdbcType=VARCHAR},
+      </if>
+      <if test="dealflag != null" >
+        DEALFLAG = #{dealflag,jdbcType=CHAR},
+      </if>
+      <if test="identitytype != null" >
+        IDENTITYTYPE = #{identitytype,jdbcType=CHAR},
+      </if>
+      <if test="frozencause != null" >
+        FROZENCAUSE = #{frozencause,jdbcType=CHAR},
+      </if>
+      <if test="frozenenddate != null" >
+        FROZENENDDATE = #{frozenenddate,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalmode != null" >
+        CAPITALMODE = #{capitalmode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.entity.AccoTrustEntity" >
+    update accotrust
+    set CUSTTYPE = #{custtype,jdbcType=CHAR},
+      TRUSTTYPE = #{trusttype,jdbcType=CHAR},
+      CUSTOMNAME = #{customname,jdbcType=VARCHAR},
+      TRUSTREQUESTNO = #{trustrequestno,jdbcType=VARCHAR},
+      TRADEACCO = #{tradeacco,jdbcType=VARCHAR},
+      FUNDACCO = #{fundacco,jdbcType=VARCHAR},
+      REQUESTDATE = #{requestdate,jdbcType=VARCHAR},
+      REQUESTTIME = #{requesttime,jdbcType=VARCHAR},
+      OPERATORNO = #{operatorno,jdbcType=VARCHAR},
+      CUSTNO = #{custno,jdbcType=VARCHAR},
+      BUSINCODE = #{busincode,jdbcType=CHAR},
+      IDENTITYNO = #{identityno,jdbcType=VARCHAR},
+      TACODE = #{tacode,jdbcType=VARCHAR},
+      CONFIRMFLAG = #{confirmflag,jdbcType=CHAR},
+      CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER},
+      ENTITYNAME = #{entityname,jdbcType=VARCHAR},
+      DEALFLAG = #{dealflag,jdbcType=CHAR},
+      IDENTITYTYPE = #{identitytype,jdbcType=CHAR},
+      FROZENCAUSE = #{frozencause,jdbcType=CHAR},
+      FROZENENDDATE = #{frozenenddate,jdbcType=VARCHAR},
+      CAPITALMODE = #{capitalmode,jdbcType=VARCHAR}
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+</mapper>

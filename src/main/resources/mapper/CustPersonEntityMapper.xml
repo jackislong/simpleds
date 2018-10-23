@@ -32,12 +32,12 @@
     where OBJID = #{objid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zheng.entity.CustPersonEntity" >
-    insert into custperson (OBJID, TRADETYPE, VOCATION, 
+    insert into custperson ( TRADETYPE, VOCATION,
       EDUCATION, INCOME, MARRIAGE, 
       BIRTHDAY, MOBLIENO, CUSTNO, 
       GENDER, CREATETIMESTAMP, UPDATETIMESTAMP, 
       VERSION, ENTITYNAME)
-    values (#{objid,jdbcType=INTEGER}, #{tradetype,jdbcType=CHAR}, #{vocation,jdbcType=CHAR}, 
+    values ( #{tradetype,jdbcType=CHAR}, #{vocation,jdbcType=CHAR},
       #{education,jdbcType=CHAR}, #{income,jdbcType=CHAR}, #{marriage,jdbcType=CHAR}, 
       #{birthday,jdbcType=VARCHAR}, #{moblieno,jdbcType=VARCHAR}, #{custno,jdbcType=VARCHAR}, 
       #{gender,jdbcType=INTEGER}, #{createtimestamp,jdbcType=TIMESTAMP}, #{updatetimestamp,jdbcType=TIMESTAMP}, 

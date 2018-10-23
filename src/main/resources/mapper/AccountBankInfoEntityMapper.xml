@@ -33,13 +33,13 @@
     where OBJID = #{objid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zheng.entity.AccountBankInfoEntity" >
-    insert into accountbankinfo (OBJID, CUSTNO, IDCODE, 
+    insert into accountbankinfo ( CUSTNO, IDCODE,
       BANKNO, BANKACCO, BANKNAME, 
       NAMEINBANK, capitalMode, PROVINCENO, 
       CITYNO, STATE, CREATETIMESTAMP, 
       UPDATETIMESTAMP, VERSION, ENTITYNAME
       )
-    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{idcode,jdbcType=VARCHAR}, 
+    values ( #{custno,jdbcType=VARCHAR}, #{idcode,jdbcType=VARCHAR},
       #{bankno,jdbcType=CHAR}, #{bankacco,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, 
       #{nameinbank,jdbcType=VARCHAR}, #{capitalmode,jdbcType=CHAR}, #{provinceno,jdbcType=CHAR}, 
       #{cityno,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{createtimestamp,jdbcType=TIMESTAMP}, 

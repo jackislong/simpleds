@@ -29,11 +29,11 @@
     where OBJID = #{objid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zheng.entity.TradeAccoInfoEntity" >
-    insert into accoinfo (OBJID, CUSTNO, TRADEACCO, 
+    insert into accoinfo ( CUSTNO, TRADEACCO,
       ACCONAME, OPENDATE, STATE, 
       CREATETIMESTAMP, UPDATETIMESTAMP, VERSION, 
       ENTITYNAME, CAPITALMODE)
-    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{tradeacco,jdbcType=VARCHAR}, 
+    values ( #{custno,jdbcType=VARCHAR}, #{tradeacco,jdbcType=VARCHAR},
       #{acconame,jdbcType=VARCHAR}, #{opendate,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, 
       #{createtimestamp,jdbcType=TIMESTAMP}, #{updatetimestamp,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
       #{entityname,jdbcType=VARCHAR}, #{capitalmode,jdbcType=CHAR})

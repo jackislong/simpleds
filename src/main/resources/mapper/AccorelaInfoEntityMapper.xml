@@ -27,11 +27,11 @@
     where OBJID = #{objid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zheng.entity.AccorelaInfoEntity" >
-    insert into accorelainfo (OBJID, CUSTNO, FUNDACCO, 
+    insert into accorelainfo ( CUSTNO, FUNDACCO,
       TRADEACCO, TACODE, CREATETIMESTAMP, 
       UPDATETIMESTAMP, VERSION, ENTITYNAME
       )
-    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{fundacco,jdbcType=VARCHAR}, 
+    values ( #{custno,jdbcType=VARCHAR}, #{fundacco,jdbcType=VARCHAR},
       #{tradeacco,jdbcType=VARCHAR}, #{tacode,jdbcType=VARCHAR}, #{createtimestamp,jdbcType=TIMESTAMP}, 
       #{updatetimestamp,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{entityname,jdbcType=VARCHAR}
       )

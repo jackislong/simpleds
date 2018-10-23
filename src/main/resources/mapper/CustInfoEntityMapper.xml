@@ -49,7 +49,7 @@
     where OBJID = #{objid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zheng.entity.CustInfoEntity" >
-    insert into custinfo (OBJID, CUSTNO, CUSTTYPE, 
+    insert into custinfo ( CUSTNO, CUSTTYPE,
       BILLPATH, BILLWAY, IDENTITYNO, 
       IDENTITYTYPE, CUSTOMNAME, TIMELIMITED, 
       ADDRESS, FAXNO, ZIPNO, 
@@ -57,13 +57,13 @@
       SZACCO, STATE, CREATETIMESTAMP, 
       UPDATETIMESTAMP, VERSION, ENTITYNAME, 
       SHORTNAME)
-    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{custtype,jdbcType=CHAR}, 
+    values ( #{custno,jdbcType=VARCHAR}, #{custtype,jdbcType=CHAR},
       #{billpath,jdbcType=CHAR}, #{billway,jdbcType=CHAR}, #{identityno,jdbcType=VARCHAR}, 
       #{identitytype,jdbcType=CHAR}, #{customname,jdbcType=VARCHAR}, #{timelimited,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{faxno,jdbcType=VARCHAR}, #{zipno,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{shacco,jdbcType=VARCHAR}, 
-      #{szacco,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{createtimestamp,jdbcType=TIMESTAMP}, 
-      #{updatetimestamp,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{entityname,jdbcType=VARCHAR}, 
+      #{szacco,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, now(),
+      now(), 0, #{entityname,jdbcType=VARCHAR},
       #{shortname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zheng.entity.CustInfoEntity" >
