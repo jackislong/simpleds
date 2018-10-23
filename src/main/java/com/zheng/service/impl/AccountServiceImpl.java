@@ -105,4 +105,9 @@ public class AccountServiceImpl implements AccountService {
         }
         return null;
     }
+
+    @Override
+    public int saveCustInfo(CustInfoEntity custInfoEntity) {
+        return custInfoEntityMapper.insert(custInfoEntity);
+    }
 }

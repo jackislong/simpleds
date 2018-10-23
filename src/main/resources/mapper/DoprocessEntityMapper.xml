@@ -24,7 +24,7 @@
     select
     <include refid="Base_Column_List" />
     from doprocess
-    where name = #{serialName,jdbcType=INTEGER}
+    where  PROCEDURENAME = #{serialName,jdbcType=INTEGER}
   </select>
 
   <select id="selectBySerialNo" resultMap="BaseResultMap" parameterType="java.lang.Integer">

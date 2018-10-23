@@ -31,4 +31,11 @@ public interface AccountService {
      * @return
      */
     public FundAccoInfoEntity selectFundAccoInfoByTradeAccoAndTACode(String tradeacco,String taCode);
+
+    /**
+     * 保存客户实体
+     * @param custInfoEntity
+     * @return
+     */
+    int  saveCustInfo(CustInfoEntity  custInfoEntity);
 }

@@ -3,6 +3,7 @@ package com.zheng.controller;
 import com.zheng.business.AccountBIZService;
 import com.zheng.entity.CustInfoEntity;
 import com.zheng.service.PubService;
+import com.zheng.util.EntityUtil;
 import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class AccountController {
     PubService  pubService;
 
     @Autowired
-    AccountBIZService accountService;
+    AccountBIZService accountbizService;
 
     @RequestMapping(value = "/")
     public String account(ModelMap modelMap) {
@@ -68,16 +69,14 @@ public class AccountController {
 
     @RequestMapping(value = "/openaccount")
     public String openaccount(HttpServletRequest  request,ModelMap modelMap){
-        CaseInsensitiveMap parmMap =  new CaseInsensitiveMap();
+        CaseInsensitiveMap parmMap =  new CaseInsensitiveMap(34);
         Iterator iterator =  request.getParameterMap().keySet().iterator();
         while (iterator.hasNext()){
             String key = (String)iterator.next();
             Object  value = request.getParameter(key);
             parmMap.put(key,value);
         }
-        CustInfoEntity custInfoEntity = new CustInfoEntity();
-        BeanUtils.copyProperties(parmMap,custInfoEntity);
-        accountService.openaccount(parmMap);
+        accountbizService.openaccount(parmMap);
         modelMap.addAttribute("error","开户成功");
         return "redirect:/account/";
     }
