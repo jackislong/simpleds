@@ -4,6 +4,34 @@
 
 $(function () {
 
+
+    $("#sub").bind("click",function () {
+        checkdata();
+    })
+    
+    $("#province").bind("change",function () {
+        if(!StringUtils.isBlank($("#province").val())){
+            $("#city").empty();
+            var par= "province="+$("#province").val();
+            var  html = "";
+            $.ajax({
+                type: "POST",
+                url: "/account/selectcity",
+                data: par,
+                success: function(result){
+                    $.each(result,function (i,item) {
+                        html += "<option value="+item.CITYNO+">"+item.CITYNAME+"</option>";
+                    })
+                    $("#city").append(html);
+                }
+            });
+        }else{
+            //清空城市列表
+            $("#city").empty();
+        }
+    })
+
+
     $("#custname").bind("blur",function () {
         if(StringUtils.isBlank($("#custname").val())){
             toastr.error('请输入客户姓名','提示');
@@ -228,5 +256,65 @@ function checkdata() {
         toastr.error('两次密码不一致，请核对！','提示');
         return false;
     }
-    return  true;
+
+    $("#sub").prop("disabled",true);
+    $.ajax({
+        type: "POST",
+        url: "/account/openaccount",
+        data: getData(),
+        datatype:"json",
+        async:false,
+        success: function(result){
+            if(result.success){
+                toastr.info('基金账户：'+result.fundacco+"\n"+'交易账户：'+result.tradeacco+"\n",'提示');
+                //重置表单
+                $("#accountfrom")[0].reset();
+            }else{
+                toastr.error('错误信息：'+result.msg,'提示');
+            }
+
+        }
+    });
+    $("#sub").prop("disabled",false);
 }
+/**
+ * 获取数据
+ * */
+function getData() {
+    return{
+        trusttype:$("#trusttype").val(),
+        requesttime:$("#requesttime").val(),
+        custname:$("#custname").val(),
+        gender:$("#sex").val(),
+        identitype:$("#certtype").val(),
+        identityno:$("#certno").val(),
+        timelimit:$("#timelimit").val(),
+        eff:$("#eff").prop("checked"),
+        birthday:$("#birthday").val(),
+        phone:$("#phone").val(),
+        moblieno:$("#moblieno").val(),
+        email:$("#email").val(),
+        faxno:$("#fax").val(),
+        address:$("#address").val(),
+        zipno:$("#postcode").val(),
+        billpath:$("#billtype").val(),
+        billway:$("#billway").val(),
+        bankno:$("#bankname").val(),
+        province:$("#province").val(),
+        city:$("#city").val(),
+        bank:$("#bank").val(),
+        nameinbank:$("#nameinbank").val(),
+        bankaccount:$("#bankaccount").val(),
+        tacode:$("#tacode").val(),
+        szacco:$("#szacco").val(),
+        shacco:$("#shacco").val(),
+        tradetype:$("#trade").val(),
+        vocation:$("#vocation").val(),
+        income:$("#income").val(),
+        marry:$("#marry").val(),
+        context:$("#context").val(),
+        password:$("#password").val()
+    }
+}
+
+

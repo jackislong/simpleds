@@ -55,6 +55,11 @@ public class UserServiceImpl implements UserService {
         return   user;
     }
 
+    @Override
+    public List<SysUserEntity> selectAllUser() {
+        return sysUserEntityMapper.selectAllUser();
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public boolean updateSelective(SysUserEntity user) {
         Assert.notNull(user, "User不可为空！");

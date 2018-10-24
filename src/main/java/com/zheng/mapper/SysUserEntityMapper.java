@@ -20,4 +20,6 @@ public interface SysUserEntityMapper {
     List<SysUserEntity> listByRoleId(Long  id);
 
     SysUserEntity getByUserName(String username);
+
+    List<SysUserEntity> selectAllUser();
 }

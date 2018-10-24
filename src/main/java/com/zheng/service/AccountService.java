@@ -101,4 +101,11 @@ public interface AccountService {
      * @return
      */
     int  saveAccoTrust(AccoTrustEntity accoTrustEntity);
+
+    /**
+     * 保存银行绑定信息
+     * @param accountBankBindEntity
+     * @return
+     */
+    int  saveAccountBankBind(AccountBankBindEntity  accountBankBindEntity);
 }

@@ -20,5 +20,9 @@ public interface UserService {
 
     SysUserEntity updateUserLastLoginInfo(SysUserEntity user);
 
-//    int  updateUserLastLoginInfo;
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<SysUserEntity>  selectAllUser();
 }

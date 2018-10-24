@@ -19,4 +19,6 @@ public interface SysRoleEntityMapper {
 
 
     List<SysRoleEntity> listRolesByUserId(Long  userid);
+
+    List<SysRoleEntity> selectAllRoles();
 }

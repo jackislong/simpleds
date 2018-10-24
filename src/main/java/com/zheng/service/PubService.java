@@ -37,6 +37,13 @@ public interface PubService {
      */
     String  creatNewFundAccoNo();
 
+
+    /**
+     * 创建新的IDCode
+     * @return
+     */
+    String CreatnNewIdCode();
+
     /**
      * 检查是否启动交易
      * @param trustTypeCode
@@ -56,4 +63,18 @@ public interface PubService {
      * @return
      */
     public String  creatNewAccoTrustRquestNo();
+
+    /**
+     * 查询所有的省份
+     * @return
+     */
+    public List selectAllProvince();
+
+
+    /**
+     * 根据省份code查询城市
+     * @param provinceCode
+     * @return
+     */
+    public List selectCityByProvinced(String provinceCode);
 }

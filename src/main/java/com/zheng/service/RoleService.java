@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface RoleService {
      List<SysRoleEntity> listRolesByUserId(Long id);
+
+     List<SysRoleEntity> selectAllRoles();
 }

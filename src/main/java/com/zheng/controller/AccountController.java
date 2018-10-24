@@ -2,17 +2,22 @@ package com.zheng.controller;
 
 import com.zheng.business.AccountBIZService;
 import com.zheng.service.PubService;
-import com.zheng.util.TokenUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,6 +28,7 @@ import java.util.Iterator;
  */
 @Controller
 @RequestMapping(value = "account")
+@Slf4j
 public class AccountController {
 
     @Autowired
@@ -65,19 +71,14 @@ public class AccountController {
          */
         modelMap.addAttribute("marrylist",pubService.selectDictByKeyNo(1022));
 
-        modelMap.put("token",TokenUtil.buildToke());
+        modelMap.put("provincelist",pubService.selectAllProvince());
         return  "/account/account";
     }
 
-    @RequestMapping(value = "/openaccount")
-    public String openaccount(HttpServletRequest  request, ModelMap modelMap, @RequestParam(value = "token") String   token){
-        /**
-         * token 防止重复提交
-         */
-//        if(!TokenUtil.checkToken(token)){
-//            return "redirect:/account/";
-//        }
-        CaseInsensitiveMap parmMap =  new CaseInsensitiveMap(34);
+    @RequestMapping(value = "/openaccount",method = RequestMethod.POST)
+    @ResponseBody
+    public Map openaccount(HttpServletRequest  request){
+        CaseInsensitiveMap parmMap =  new CaseInsensitiveMap(30);
         Iterator iterator =  request.getParameterMap().keySet().iterator();
         while (iterator.hasNext()){
             String key = (String)iterator.next();
@@ -98,9 +99,22 @@ public class AccountController {
             parmMap.put("timelimited",parmMap.get("timelimit"));
         }
         parmMap.put("tacode","28");
-        accountbizService.openaccount(parmMap);
-        modelMap.addAttribute("error","开户成功");
-        TokenUtil.removeToken();
-        return "redirect:/account/";
+        Map  resultMap = new HashMap<>(5);
+        resultMap.put("success",true);
+        try {
+            resultMap = accountbizService.openaccount(parmMap);
+        }catch (Exception e){
+            log.error("开户失败",e);
+            resultMap.put("success",false);
+            resultMap.put("msg",e.getMessage());
+        }
+
+        return  resultMap ;
+    }
+
+    @RequestMapping(value = "/selectcity")
+    @ResponseBody
+    public List selectcity(@RequestParam(value = "province") String province){
+      return   pubService.selectCityByProvinced(province);
     }
 }

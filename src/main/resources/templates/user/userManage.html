@@ -30,13 +30,13 @@
         	<div class="border-bottom" th:include="header :: headerTop"></div>
       		<div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
 		   		<div class="col-lg-10">
-		     		<h2>系统管理</h2>
+		     		<h2>用户管理</h2>
 		          	<ol class="breadcrumb">
 			            <li>
 			            	<a href="#">首页</a>
 			            </li>
 			            <li>
-			            	<a>系统管理</a>
+			            	<a>用户管理</a>
 			         	</li>
 
 			          	<li class="active">
@@ -60,14 +60,7 @@
                                 </div>
                             </div>
                             <div class="ibox-content" style="display: block;">
-                                <form id="formTag" action="userManage" method="POST" class="form-horizontal" enctype="multipart/form-data">
-                                    
-                                    <label class="col-sm-2 control-label">账号：</label>
-                                        <div class="col-sm-10  ">
-                                            <input id="userName" name="userName" type="text" class="form-control" readonly="readonly" th:value="${user.userName}"/>
-                                        </div>
-                                    </div>
-                                    
+                                <form id="formTag" action="userManage" method="POST" class="form-horizontal" onsubmit="return false;" enctype="multipart/form-data">
                                     <div class="hr-line-dashed"></div>
         
                                     <div class="form-group"><label class="col-sm-2 control-label">密码：</label>
@@ -78,21 +71,38 @@
                                     
                                     <div class="hr-line-dashed"></div>
         
-                                    <div class="form-group"><label class="col-sm-2 control-label">真实姓名：</label>
+                                    <div class="form-group"><label class="col-sm-2 control-label">姓名：</label>
                                         <div class="col-sm-10">
-                                            <input id="realName" name="realName" type="text" class="form-control" th:value="${user.realName}"/>
+                                            <input id="username" name="username" type="text" class="form-control" th:value="${user.username}"/>
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
         
-                                    <div class="form-group"><label class="col-sm-2 control-label">岗位：</label>
+                                    <div class="form-group"><label class="col-sm-2 control-label">昵称：</label>
                                         <div class="col-sm-10">
-                                            <input id="business" name="business" type="text" class="form-control" th:value="${user.business}"/>
+                                            <input id="nickname" name="nickname" type="text" class="form-control" th:value="${user.nickname}"/>
                                         </div>
                                     </div>
         
                                     <div class="hr-line-dashed"></div>
-        
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">电话：</label>
+                                        <div class="col-sm-10">
+                                            <input id="moblie" name="moblie" type="text" class="form-control" th:value="${user.mobile}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">QQ：</label>
+                                        <div class="col-sm-10">
+                                            <input id="qq" name="qq" type="text" class="form-control" th:value="${user.qq}"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="hr-line-dashed"></div>
+
                                     <div class="form-group"><label class="col-sm-2 control-label">邮箱：</label>
                                         <div class="col-sm-10">
                                             <input id="email" name="email" type="text" class="form-control" th:value="${user.email}"/>

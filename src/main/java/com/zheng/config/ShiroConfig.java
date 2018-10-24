@@ -143,11 +143,11 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置realm.
         securityManager.setRealm(authRealm);
-        securityManager.setCacheManager(redisCacheManager());
-        // 自定义session管理 使用redis
-        securityManager.setSessionManager(sessionManager());
-        // 注入记住我管理器
-        securityManager.setRememberMeManager(rememberMeManager());
+//        securityManager.setCacheManager(redisCacheManager());
+//        // 自定义session管理 使用redis
+//        securityManager.setSessionManager(sessionManager());
+//        // 注入记住我管理器
+//        securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
     }
 

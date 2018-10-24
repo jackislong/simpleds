@@ -102,6 +102,22 @@ public class PubSrviceImpl  implements PubService {
     }
 
     @Override
+    public String CreatnNewIdCode() {
+        StringBuilder  custno = new StringBuilder("");
+        String  sql = "SELECT NEXTVAL('ACCOUNTBANKID_SEQUENCE')  as id";
+        List<Map<String, Object>> svList =   template.queryForList(sql);
+        String  sequence  = "";
+        if(svList!=null && !svList.isEmpty()){
+            sequence = MapUtils.getString(((Map)svList.get(0)),"id");
+        }
+        Integer  end =9-sequence.length();
+        while (custno.length() < end){
+            custno.append("0");
+        }
+        return  custno.append(sequence).toString();
+    }
+
+    @Override
     public void checkIsStartTrade(Integer trustTypeCode) {
         if(TrustTypeEnum.COUNTER.getCode().equals(trustTypeCode) || TrustTypeEnum.FAX.getCode().equals(trustTypeCode)){
             DoprocessEntity  doprocessEntity = doprocessEntityMapper.selectByName("STARTTRADE");
@@ -150,5 +166,17 @@ public class PubSrviceImpl  implements PubService {
             custno.append("0");
         }
         return  dateBuild.append(custno).append(sequence).toString();
+    }
+
+    @Override
+    public List selectAllProvince() {
+        String  sql = "SELECT  PROVINCECODE,PROVINCENAME from province";
+        return template.queryForList(sql);
+    }
+
+    @Override
+    public List selectCityByProvinced(String provinceCode) {
+        String  sql = "SELECT  CITYNO,CITYNAME  from city WHERE provincecode =?";
+        return  template.queryForList(sql,new Object[]{provinceCode});
     }
 }

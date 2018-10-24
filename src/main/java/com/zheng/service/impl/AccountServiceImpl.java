@@ -49,6 +49,10 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     AccoTrustEntityMapper  accoTrustEntityMapper;
 
+
+    @Autowired
+    AccountBankBindEntityMapper  accountBankBindEntityMapper;
+
     @Autowired
     PubService  pubService;
 
@@ -211,5 +215,13 @@ public class AccountServiceImpl implements AccountService {
         accoTrustEntity.setCreatetimestamp(new Date());
         accoTrustEntity.setUpdatetimestamp(new Date());
         return accoTrustEntityMapper.insert(accoTrustEntity);
+    }
+
+    @Override
+    public int saveAccountBankBind(AccountBankBindEntity accountBankBindEntity) {
+        accountBankBindEntity.setCreatetimestamp(new Date());
+        accountBankBindEntity.setUpdatetimestamp(new Date());
+        accountBankBindEntity.setVersion(0);
+        return accountBankBindEntityMapper.insert(accountBankBindEntity);
     }
 }

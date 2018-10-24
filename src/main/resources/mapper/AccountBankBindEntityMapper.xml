@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zheng.mapper.AccountBankBindEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zheng.entity.AccountBankBindEntity" >
+    <id column="OBJID" property="objid" jdbcType="INTEGER" />
+    <result column="CUSTNO" property="custno" jdbcType="VARCHAR" />
+    <result column="IDCODE" property="idcode" jdbcType="VARCHAR" />
+    <result column="TRADEACCO" property="tradeacco" jdbcType="VARCHAR" />
+    <result column="CREATETIMESTAMP" property="createtimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIMESTAMP" property="updatetimestamp" jdbcType="TIMESTAMP" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="ENTITYNAME" property="entityname" jdbcType="VARCHAR" />
+    <result column="capitalMode" property="capitalmode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OBJID, CUSTNO, IDCODE, TRADEACCO, CREATETIMESTAMP, UPDATETIMESTAMP, VERSION, ENTITYNAME, 
+    capitalMode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from accountbankbind
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from accountbankbind
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zheng.entity.AccountBankBindEntity" >
+    insert into accountbankbind (OBJID, CUSTNO, IDCODE, 
+      TRADEACCO, CREATETIMESTAMP, UPDATETIMESTAMP, 
+      VERSION, ENTITYNAME, capitalMode
+      )
+    values (#{objid,jdbcType=INTEGER}, #{custno,jdbcType=VARCHAR}, #{idcode,jdbcType=VARCHAR}, 
+      #{tradeacco,jdbcType=VARCHAR}, #{createtimestamp,jdbcType=TIMESTAMP}, #{updatetimestamp,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=INTEGER}, #{entityname,jdbcType=VARCHAR}, #{capitalmode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheng.entity.AccountBankBindEntity" >
+    insert into accountbankbind
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        OBJID,
+      </if>
+      <if test="custno != null" >
+        CUSTNO,
+      </if>
+      <if test="idcode != null" >
+        IDCODE,
+      </if>
+      <if test="tradeacco != null" >
+        TRADEACCO,
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP,
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME,
+      </if>
+      <if test="capitalmode != null" >
+        capitalMode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objid != null" >
+        #{objid,jdbcType=INTEGER},
+      </if>
+      <if test="custno != null" >
+        #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcode != null" >
+        #{idcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeacco != null" >
+        #{tradeacco,jdbcType=VARCHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        #{entityname,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalmode != null" >
+        #{capitalmode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.entity.AccountBankBindEntity" >
+    update accountbankbind
+    <set >
+      <if test="custno != null" >
+        CUSTNO = #{custno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcode != null" >
+        IDCODE = #{idcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeacco != null" >
+        TRADEACCO = #{tradeacco,jdbcType=VARCHAR},
+      </if>
+      <if test="createtimestamp != null" >
+        CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetimestamp != null" >
+        UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="entityname != null" >
+        ENTITYNAME = #{entityname,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalmode != null" >
+        capitalMode = #{capitalmode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheng.entity.AccountBankBindEntity" >
+    update accountbankbind
+    set CUSTNO = #{custno,jdbcType=VARCHAR},
+      IDCODE = #{idcode,jdbcType=VARCHAR},
+      TRADEACCO = #{tradeacco,jdbcType=VARCHAR},
+      CREATETIMESTAMP = #{createtimestamp,jdbcType=TIMESTAMP},
+      UPDATETIMESTAMP = #{updatetimestamp,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER},
+      ENTITYNAME = #{entityname,jdbcType=VARCHAR},
+      capitalMode = #{capitalmode,jdbcType=VARCHAR}
+    where OBJID = #{objid,jdbcType=INTEGER}
+  </update>
+</mapper>
