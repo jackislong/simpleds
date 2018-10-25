@@ -7,7 +7,7 @@ import com.zheng.holder.RequestHolder;
 import java.util.UUID;
 
 /**
- * describle
+ * token工具
  *
  * @author Administrator
  * @date 2018-10-23.
@@ -38,7 +38,7 @@ public class TokenUtil {
     /**
      * 创建token
      */
-    public static String buildToke(){
+    public static String  buildToke(){
         SysUserEntity  sysUserEntity = (SysUserEntity)RequestHolder.getSession().getAttribute(SessionConst.USER_SESSION_KEY);
         String token =UUID.randomUUID().toString();
         RequestHolder.getSession().setAttribute("token"+sysUserEntity.getId(),token);

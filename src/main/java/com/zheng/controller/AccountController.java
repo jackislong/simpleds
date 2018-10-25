@@ -8,6 +8,7 @@ import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,10 +76,22 @@ public class AccountController {
         return  "/account/account";
     }
 
+<<<<<<< HEAD
     @RequestMapping(value = "/openaccount",method = RequestMethod.POST)
     @ResponseBody
     public Map openaccount(HttpServletRequest  request){
         CaseInsensitiveMap parmMap =  new CaseInsensitiveMap(30);
+=======
+    @RequestMapping(value = "/openaccount")
+    public String openaccount(HttpServletRequest  request, ModelMap modelMap, @RequestParam(value = "token") String   token){
+        /**
+         * token 防止重复提交
+         */
+        if(!TokenUtil.checkToken(token)){
+            return "redirect:/account/";
+        }
+        CaseInsensitiveMap parmMap =  new CaseInsensitiveMap(34);
+>>>>>>> 9c4a2e80b2e2088b663a294a497affe890b7fb4f
         Iterator iterator =  request.getParameterMap().keySet().iterator();
         while (iterator.hasNext()){
             String key = (String)iterator.next();
@@ -93,7 +106,7 @@ public class AccountController {
         parmMap.put("requestDate",requestDate);
         parmMap.put("requestTime",requestTime);
         parmMap.put("birthday",brithday.substring(0,10).replace("-",""));
-        if(!org.springframework.util.StringUtils.isEmpty(eff) && "on".equals(eff)) {
+        if(!StringUtils.isEmpty(eff) && "on".equals(eff)) {
             parmMap.put("timelimited","99999999");
         }else{
             parmMap.put("timelimited",parmMap.get("timelimit"));
