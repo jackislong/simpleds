@@ -6,7 +6,9 @@ import com.zheng.service.ResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * describle
@@ -33,5 +35,16 @@ public class ResourcesServiceImpl implements ResourcesService {
     @Override
     public List<SysResourcesEntity> listByUserId(Long id) {
         return resourcesEntityMapper.listByUserId(id);
+    }
+
+    @Override
+    public List<SysResourcesEntity> selectDataByPage(Map map, int start, int end) {
+        Map  parMap = new HashMap<>();
+        if(!map.isEmpty()){
+            parMap.putAll(map);
+        }
+        parMap.put("sysstart",start);
+        parMap.put("sysend",end);
+        return resourcesEntityMapper.selectDataByPage(parMap);
     }
 }

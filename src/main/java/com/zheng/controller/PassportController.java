@@ -26,13 +26,13 @@ public class PassportController {
     ResourcesService resourcesService;
 
     @RequestMapping(value = "/login")
-    public String login() {
+    public String login(ModelMap modelMap) {
+//        modelMap.addAttribute("error","");
         return  "login";
     }
 
     @RequestMapping(value = "/dashboard")
     public String dashboard(){
-
         return "index";
     }
     /**

@@ -25,6 +25,19 @@
     from sys_role
   </select>
 
+  <select id="selectDataByPage" resultMap="BaseResultMap"  parameterType="java.util.Map" >
+
+    select
+    <include refid="Base_Column_List" />
+    from
+     <where>
+         <if test="name!=null">name=#{name}</if>
+         <if test="description!=null and description.length()>0"> and description=#{description}</if>
+         <if test="available!=null"> and available=#{available}</if>
+     </where>
+    sys_role  limit #{rolestart},#{roleend}
+  </select>
+
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_role

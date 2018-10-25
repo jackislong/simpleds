@@ -3,6 +3,8 @@ package com.zheng.mapper;
 import com.zheng.entity.SysResourcesEntity;
 
 import java.util.List;
+import java.util.Map;
+
 public interface SysResourcesEntityMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -21,6 +23,8 @@ public interface SysResourcesEntityMapper {
     List<SysResourcesEntity> listAll();
 
     List<SysResourcesEntity> listByUserId(Long  userId);
+
+    List<SysResourcesEntity> selectDataByPage(Map parMap);
 
 
 }

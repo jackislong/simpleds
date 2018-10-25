@@ -81,3 +81,50 @@ StringUtils.replaceAll = function(str,s1,s2){
 	//这里确定了插件的名称
 	this.simpleUtil = _plugin_api;
 })();
+
+var commonFn={};
+
+commonFn.setAjaxPaginator = function (paginatorSelector, data, option) {
+	var totals = data.count;//总条数
+	var pageSize = option.pageSize; //每页条数
+	var totalPages = 1;
+	if (totals != 0) {
+		if (totals % pageSize == 0) {
+			totalPages = totals / pageSize;
+		} else {
+			totalPages = Math.ceil(totals / pageSize);
+		}
+	}
+	if (totalPages > 1) {
+		//当总页数大于1时生成显示分页否则不显示分页
+		commonFn.buildAjaxPaginator(paginatorSelector, $.extend(option, {totalPages: totalPages}))
+	}
+}
+
+commonFn.buildAjaxPaginator = function (paginatorSelector, option) {
+	var _option = {
+		currentPage: 1, //当前页
+		totalPages: 1, //总页数
+		numberOfPages: 5, //设置控件显示的页码数
+		bootstrapMajorVersion: 3,//如果是bootstrap3版本需要加此标识，并且设置包含分页内容的DOM元素为UL,如果是bootstrap2版本，则DOM包含元素是DIV
+		useBootstrapTooltip: false,//是否显示tip提示框
+		itemTexts: function (type, page, current) {//文字翻译
+			switch (type) {
+				case "first":
+					return "首页";
+				case "prev":
+					return "上一页";
+				case "next":
+					return "下一页";
+				case "last":
+					return "尾页";
+				case "page":
+					return page;
+			}
+		},
+		onPageClicked: function (event, originalEvent, type, page, pageSize) {
+		}
+	};
+	$.extend(_option, option);
+	paginatorSelector.bootstrapPaginator(_option);
+}

@@ -64,26 +64,19 @@
                                     <table class=" table table-hover" data-page-size="10">
                                         <thead>
                                         <tr>
-                                            <th width="5%">名称</th>
-                                            <th width="8%">描述</th>
-                                            <th width="8%">可用</th>
-                                            <th>操作</th>
+                                            <th width="1%">选中</th>
+                                            <th width="10%">名称</th>
+                                            <th width="10%">描述</th>
+                                            <th width="10%">可用</th>
+                                            <!--<th>操作</th>-->
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr th:each="role:${rolelist}">
-                                            <td th:text="${role.name}">Onions</td>
-                                            <td th:text="${role.description}">Onions</td>
-                                            <td th:text="${role.available}">Onions</td>
-                                            <td>
-                                                <!--<a th:href="@{'userDetails?userid='+${user.id}}" title="查看详情">查看详情</a>-->
-                                            </td>
-                                        </tr>
+                                        <tbody id="roleContext">
                                         </tbody>
                                         <tfoot>
                                         <tr>
                                             <td colspan="9">
-                                                <ul id="pageHTML" class="pagination pull-right"></ul>
+                                                <ul id="example" class="pagination pull-right"></ul>
                                             </td>
                                         </tr>
                                         </tfoot>
@@ -101,12 +94,12 @@
     <!-- Mainly scripts -->
     <script th:src="@{/js/jquery-2.1.1.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/bootstrap-paginator.js}"></script>
     <script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
     <script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 	
     <!-- Peity -->
     <script th:src="@{/js/plugins/peity/jquery.peity.min.js}"></script>
-    
     <!-- Custom and plugin javascript -->
     <script th:src="@{/js/inspinia.js}"></script>
     <script th:src="@{/js/plugins/pace/pace.min.js}"></script>
@@ -119,6 +112,85 @@
     
     <!-- SUMMERNOTE -->
     <script th:src="@{/js/plugins/summernote/summernote.min.js}"></script>
+
+
+<script>
+$(function () {
+    var  pageCount;
+    var  currentPage;
+    $.ajax({
+        url: "/roles/page",
+        datatype: 'json',
+        type: "Post",
+        success: function (result) {
+            if (result != null) {
+                $("#roleContext").empty();
+                $.each(result.pageData, function (index, item) { //遍历返回的json
+                    $("#roleContext").append('<tr>');
+                    /*<![CDATA[*/
+                    $("#roleContext").append("<td><input type='checkbox' style='margin-left: 12px' id=role_"+item.id+"></td>");
+                    /*]]>*/
+                    $("#roleContext").append('<td>' + item.name + '</td>');
+                    $("#roleContext").append('<td>' + item.description + '</td>');
+                    $("#roleContext").append('<td>' + item.available + '</td>');
+                    $("#roleContext").append('</tr>');
+                });
+                pageCount = result.pageCount; //取到pageCount的值(把返回数据转成object类型)
+                currentPage =result.currentPage; //得到urrentPage
+                var options = {
+                    bootstrapMajorVersion: 3, //版本
+                    currentPage: currentPage, //当前页数
+                    totalPages: pageCount, //总页数
+                    itemTexts: function (type, page, current) {
+                        switch (type) {
+                            case "first":
+                                return "首页";
+                            case "prev":
+                                return "上一页";
+                            case "next":
+                                return "下一页";
+                            case "last":
+                                return "末页";
+                            case "page":
+                                return page;
+                        }
+                    },//点击事件，用于通过Ajax来刷新整个list列表
+                    onPageClicked: function (event, originalEvent, type, page) {
+                        $("#roleContext").empty();
+                        $.ajax({
+                            url: "/roles/page",
+                            type: "Post",
+                            data:getParm(page) ,
+                            success: function (result) {
+                                if (result != null) {
+                                    $.each(result.pageData, function (index, item) { //遍历返回的json
+                                        $("#roleContext").append('<tr>');
+                                        /*<![CDATA[*/
+                                        $("#roleContext").append("<td><input type='checkbox' style='margin-left: 12px' id=role_"+item.id+"></td>");
+                                        /*]]>*/
+                                        $("#roleContext").append('<td>' + item.name + '</td>');
+                                        $("#roleContext").append('<td>' + item.description + '</td>');
+                                        $("#roleContext").append('<td>' + item.available + '</td>');
+                                        $("#roleContext").append('</tr>');
+                                    });
+                                }
+                            }
+                        });
+                    }
+                };
+                $('#example').bootstrapPaginator(options);
+            }
+        }
+    })
+
+    function getParm(page){
+        return{
+            currentPage:page,
+        }
+    }
+})
+
+</script>
 
 </body>
 

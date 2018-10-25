@@ -3,6 +3,7 @@ package com.zheng.mapper;
 import com.zheng.entity.SysRoleEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SysRoleEntityMapper {
     int deleteByPrimaryKey(Long id);
@@ -21,4 +22,6 @@ public interface SysRoleEntityMapper {
     List<SysRoleEntity> listRolesByUserId(Long  userid);
 
     List<SysRoleEntity> selectAllRoles();
+
+    List<SysRoleEntity>  selectDataByPage(Map parMap);
 }

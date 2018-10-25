@@ -21,6 +21,21 @@
   </sql>
 
 
+  <select id="selectDataByPage"  parameterType="java.util.Map"  resultMap="BaseResultMap">
+
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM
+    sys_resources
+    <where>
+       <if test="name!=null"> and  name=#{name} </if>
+       <if test="url!=null">   url=#{url} </if>
+       <if test="permission!=null">   permission=#{permission} </if>
+       <if test="parent_id!=null">   parent_id=#{parent_id} </if>
+    </where>
+     limit #{sysstart},#{sysend}
+  </select>
+
   <select id="listByUserId" resultMap="BaseResultMap" parameterType="Long" >
     SELECT
             re.id,
